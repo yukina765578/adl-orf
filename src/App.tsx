@@ -1,19 +1,29 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom'
+import { ChakraProvider, Heading } from '@chakra-ui/react';
 import Loading from './page/loading';
-import './App.css';
+import AppRoutes from './global/Routes';
+import Navigation from './global/components/Navigation';
+import { Box, extendTheme, Fade } from '@chakra-ui/react'
+
+const customTheme = extendTheme({
+  fonts: {
+    body: 'Crimson Pro, serif',
+    heading: 'Crimson Pro, serif',
+  },
+});
 
 function App() {
-  const [loading, setLoading] = useState<boolean>(true);
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 3300);
-  }, [])
-  if (loading){
-    return <Loading />
-  }
   return (
-    <div className="App">
-      <h1>Hello</h1>
-    </div>
+    <Router>
+      <ChakraProvider theme={customTheme}>
+        <Box>
+          <Loading />
+          <Navigation />
+          <AppRoutes />
+        </Box>
+      </ChakraProvider>
+    </Router>
   );
 }
 
