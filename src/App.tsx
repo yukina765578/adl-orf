@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom'
-import { ChakraProvider, Heading } from '@chakra-ui/react';
+import { ChakraProvider, theme as chakraTheme, Box, extendTheme  } from '@chakra-ui/react';
 import Loading from './page/loading';
 import AppRoutes from './global/Routes';
 import Navigation from './global/components/Navigation';
-import { Box, extendTheme, Fade } from '@chakra-ui/react'
 
 const customTheme = extendTheme({
   fonts: {
-    body: 'Crimson Pro, serif',
-    heading: 'Crimson Pro, serif',
+    ...chakraTheme.fonts,
+    body: 'Noto Serif JP, serif',
+    heading: 'Noto Serif JP, serif',
   },
 });
 
