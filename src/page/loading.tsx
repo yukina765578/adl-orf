@@ -1,5 +1,5 @@
-import React, { useState, useEffect} from 'react'
-import { Box, Image, Fade } from '@chakra-ui/react'
+import { useState, useEffect} from 'react'
+import { Box, Image } from '@chakra-ui/react'
 import Logo from '../image/logo.png'
 
 const Loading = () => {
@@ -23,7 +23,7 @@ const Loading = () => {
     }, [])
     return(
         <Box sx={loadingBox}>
-            <Image boxSize="100px" src={Logo} />
+            <Image boxSize="200px" src={Logo} />
         </Box>
     )
 }

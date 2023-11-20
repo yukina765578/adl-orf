@@ -8,6 +8,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fontsource/crimson-pro": "^5.0.15",
+    "@fontsource/noto-serif-jp": "^5.0.7",
     "@fontsource/source-sans-pro": "^5.0.8",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
