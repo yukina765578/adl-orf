@@ -9,14 +9,16 @@ import {
     Box,
     Image,
     Heading,
-    Text
+    Text,
+    Divider
 } from '@chakra-ui/react';
-import { ChevronRightIcon, ChevronLeftIcon } from '@chakra-ui/icons'
 import { NavigationRight } from './NavigationRight';
 import { NavigationLeft } from './NavigationLeft';
 
 interface PopupProps {
     id: number,
+    viewportSize: {width: number, height: number};
+    buttonPosition: {width: number, height: number};
     isOpen: boolean;
     modalImage:string;
     modalTitle: string;
@@ -28,7 +30,7 @@ interface PopupProps {
     setCurrentModal: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Popup: React.FC<PopupProps> = ({ id, isOpen, modalImage, modalTitle, name, modalContent, modalButtonContent, onNextModal, onPrevModal, setCurrentModal }) => {
+const Popup: React.FC<PopupProps> = ({ id, viewportSize, buttonPosition, isOpen, modalImage, modalTitle, name, modalContent, modalButtonContent, onNextModal, onPrevModal, setCurrentModal }) => {
     const handleNextModal = () => {
         onNextModal();
     }
@@ -41,41 +43,57 @@ const Popup: React.FC<PopupProps> = ({ id, isOpen, modalImage, modalTitle, name,
     const handleOnClose = () => {
         setCurrentModal(0);
     }
+    const topPercentage = (buttonPosition.height / 264.738) * 100;
+    const leftPercentage = (buttonPosition.width / 264.738);
+    const leftCoordinate = (viewportSize.width / 2 + viewportSize.height * leftPercentage);
+    const buttonStyle = {
+        display: 'flex',
+        top: `${topPercentage}%`,
+        left: leftCoordinate,
+        position: 'absolute',
+        transform: 'translate(-50%, -50%)',
+        backgroundColor: 'transparent'
+    }
     const imageBox = {
         width: '100%',
-        height: '40%',
+        height: '25vh',
+        minHeight: 200,
+        maxHeight: 233,
         marginBottom: 10
     }
     const titleStyle ={
-        fontSize: 36,
+        fontSize: 28,
         marginTop: 10,
         marginBottom: 5
     }
     const nameStyle = {
         fontSize: 16,
         marginTop: 5,
-        marginBottom: 5,
+        marginBottom: 10,
         letterSpacing: 0.8
     }
     const textStyle = {
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: 500,
         letterSpacing: 0.8
     }
     return(
         <>
-            <Button onClick={handleOnOpen}>{modalButtonContent}</Button>
-            <Modal isCentered isOpen={isOpen} onClose={handleOnClose} size='md'>
-                <ModalContent height="80vh" padding='40px'>
-                    <Box style={imageBox}>
-                        <Image style={{width: '100%', height: '100%', borderRadius: '5px'}} src={modalImage} />
-                    </Box>
-                    <Box>
-                        <Heading style={titleStyle} fontWeight={600}>{modalTitle}</Heading>
-                        <Text style={nameStyle} fontWeight={600}>{name}</Text>
-                        <Text style={textStyle}>
-                            {modalContent}
-                        </Text>
+            <Button onClick={handleOnOpen} sx={buttonStyle}>{modalButtonContent}</Button>
+            <Modal isCentered isOpen={isOpen} onClose={handleOnClose} size='sm'>
+                <ModalContent height="75vh" maxHeight={699} minHeight={600} padding='40px' >
+                    <Box overflowY='auto'>
+                        <Box style={imageBox}>
+                            <Image style={{width: '100%', height: '100%', borderRadius: '5px', objectFit: 'contain'}} src={modalImage} />
+                        </Box>
+                        <Divider marginTop={3} marginBottom={3}/>
+                        <Box>
+                            <Heading style={titleStyle} fontWeight={600}>{modalTitle}</Heading>
+                            <Text style={nameStyle} fontWeight={600}>{name}</Text>
+                            <Text style={textStyle}>
+                                {modalContent}
+                            </Text>
+                        </Box>
                     </Box>
                     <ModalCloseButton />
                     <ModalFooter width='100%'>

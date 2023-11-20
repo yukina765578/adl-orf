@@ -18,8 +18,8 @@ function App() {
       <ChakraProvider theme={customTheme}>
         <Box>
           <Loading />
-          <Navigation />
           <AppRoutes />
+          <Navigation />
         </Box>
       </ChakraProvider>
     </Router>
