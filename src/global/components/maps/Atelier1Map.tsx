@@ -1,7 +1,7 @@
 import { Box, Image } from '@chakra-ui/react';
-import Map from '../../../image/Lounge/map.png';
+import Map from '../../../image/Atelier1/map.png';
 
-const LoungeMap = () => {
+const Atelier1Map = () => {
     const mapBox = {
         position: 'absolute',
         width: '100vw',
@@ -31,4 +31,4 @@ const LoungeMap = () => {
     );
 };
 
-export default LoungeMap;
+export default Atelier1Map;
