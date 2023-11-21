@@ -43,7 +43,7 @@ const Lounge = () => {
             <Popup
                 id={1}
                 viewportSize={viewportSize}
-                buttonPosition={{width: -9.18, height: 139.898 }}
+                buttonPosition={{width: 9.18, height: 170.111 }}
                 isOpen={(1 === currentModal)}
                 modalImage={Morimoto}
                 modalTitle='香音歩'
@@ -58,7 +58,7 @@ const Lounge = () => {
             <Popup
                 id={2}
                 viewportSize={viewportSize}
-                buttonPosition={{width: 9.18, height: 139.898 }}
+                buttonPosition={{width: 9.18, height: 154.898 }}
                 isOpen={(2 === currentModal)}
                 modalImage={Morimoto}
                 modalTitle='香音歩'
@@ -78,8 +78,143 @@ const Lounge = () => {
                 modalImage={Morimoto}
                 modalTitle='タイトル３'
                 name='名前３'
-                modalContent='亜sdjlkfhぁウェインclンsbふぁえはあjhscんだhgb濡れhンgにbhン個ｂｒｃまえ８ｐあｓｄふぁえあｓｄｆｃｃｋｌんｈｆんｃｋｊｃｌｂｋｋｌんｈくｈｓんｈｒ'
+                modalContent='Caption'
                 modalButtonContent='03'
+                onNextModal={handleNextModal}
+                onPrevModal={handlePrevModal}
+                setCurrentModal={setCurrentModal}
+            />
+
+            <Popup
+                id={4}
+                viewportSize={viewportSize}
+                buttonPosition={{width: 9.18, height: 124.898 }}
+                isOpen={(4 === currentModal)}
+                modalImage={Morimoto}
+                modalTitle='タイトル4'
+                name='名前'
+                modalContent='Caption'
+                modalButtonContent='04'
+                onNextModal={handleNextModal}
+                onPrevModal={handlePrevModal}
+                setCurrentModal={setCurrentModal}
+            />
+
+            <Popup
+                id={5}
+                viewportSize={viewportSize}
+                buttonPosition={{width: 9.18, height: 110.389 }}
+                isOpen={(5 === currentModal)}
+                modalImage={Morimoto}
+                modalTitle='タイトル5'
+                name='名前'
+                modalContent='Caption'
+                modalButtonContent='05'
+                onNextModal={handleNextModal}
+                onPrevModal={handlePrevModal}
+                setCurrentModal={setCurrentModal}
+            />
+
+            <Popup
+                id={6}
+                viewportSize={viewportSize}
+                buttonPosition={{width: 9.18, height: 94.408 }}
+                isOpen={(6 === currentModal)}
+                modalImage={Morimoto}
+                modalTitle='タイトル6'
+                name='名前'
+                modalContent='Caption'
+                modalButtonContent='06'
+                onNextModal={handleNextModal}
+                onPrevModal={handlePrevModal}
+                setCurrentModal={setCurrentModal}
+            />
+
+            <Popup
+                id={7}
+                viewportSize={viewportSize}
+                buttonPosition={{width: -9.18, height: 94.408 }}
+                isOpen={(7 === currentModal)}
+                modalImage={Morimoto}
+                modalTitle='タイトル7'
+                name='名前'
+                modalContent='Caption'
+                modalButtonContent='07'
+                onNextModal={handleNextModal}
+                onPrevModal={handlePrevModal}
+                setCurrentModal={setCurrentModal}
+            />
+
+            <Popup
+                id={8}
+                viewportSize={viewportSize}
+                buttonPosition={{width: -9.18, height: 110.389 }}
+                isOpen={(8 === currentModal)}
+                modalImage={Morimoto}
+                modalTitle='タイトル8'
+                name='名前'
+                modalContent='Caption'
+                modalButtonContent='08'
+                onNextModal={handleNextModal}
+                onPrevModal={handlePrevModal}
+                setCurrentModal={setCurrentModal}
+            />
+
+            <Popup
+                id={9}
+                viewportSize={viewportSize}
+                buttonPosition={{width: -9.18, height: 124.898 }}
+                isOpen={(9 === currentModal)}
+                modalImage={Morimoto}
+                modalTitle='タイトル9'
+                name='名前'
+                modalContent='Caption'
+                modalButtonContent='09'
+                onNextModal={handleNextModal}
+                onPrevModal={handlePrevModal}
+                setCurrentModal={setCurrentModal}
+            />
+
+            <Popup
+                id={10}
+                viewportSize={viewportSize}
+                buttonPosition={{width: -9.18, height: 139.898 }}
+                isOpen={(10 === currentModal)}
+                modalImage={Morimoto}
+                modalTitle='タイトル10'
+                name='名前'
+                modalContent='Caption'
+                modalButtonContent='10'
+                onNextModal={handleNextModal}
+                onPrevModal={handlePrevModal}
+                setCurrentModal={setCurrentModal}
+            />
+
+            <Popup
+                id={11}
+                viewportSize={viewportSize}
+                buttonPosition={{width: -9.18, height: 154.898 }}
+                isOpen={(11 === currentModal)}
+                modalImage={Morimoto}
+                modalTitle='タイトル11'
+                name='名前'
+                modalContent='Caption'
+                modalButtonContent='11'
+                onNextModal={handleNextModal}
+                onPrevModal={handlePrevModal}
+                setCurrentModal={setCurrentModal}
+            />
+
+            <Popup
+                id={12}
+                viewportSize={viewportSize}
+                buttonPosition={{width: -9.18, height: 170.111 }}
+                isOpen={(12 === currentModal)}
+                modalImage={Morimoto}
+                modalTitle='タイトル12'
+                name='名前'
+                modalContent='Caption'
+                modalButtonContent='12'
                 onNextModal={handleNextModal}
                 onPrevModal={handlePrevModal}
                 setCurrentModal={setCurrentModal}
