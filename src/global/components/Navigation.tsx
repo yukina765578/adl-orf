@@ -10,10 +10,13 @@ const Navigation = () => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-end',
-        marginRight: '30px',
-        marginBottom: '40px',
+        marginRight: '20px',
+        marginBottom: '30px',
         lineHeight: 1.5,
-        fontSize: '16px'
+        fontSize: '16px',
+        backgroundColor: 'rgba(256,256,256,0.8)',
+        padding: 4,
+        borderRadiues: 5
     }
 
     return(

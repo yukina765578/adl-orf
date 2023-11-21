@@ -23,7 +23,7 @@ const Loading = () => {
     }, [])
     return(
         <Box sx={loadingBox}>
-            <Image boxSize="200px" src={Logo} />
+            <Image boxSize="160px" src={Logo} />
         </Box>
     )
 }

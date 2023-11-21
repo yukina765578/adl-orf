@@ -3,6 +3,7 @@ import { ChakraProvider, theme as chakraTheme, Box, extendTheme  } from '@chakra
 import Loading from './page/loading';
 import AppRoutes from './global/Routes';
 import Navigation from './global/components/Navigation';
+import Header from './global/components/Header';
 
 const customTheme = extendTheme({
   fonts: {
@@ -19,6 +20,7 @@ function App() {
         <Box>
           <Loading />
           <AppRoutes />
+          <Header />
           <Navigation />
         </Box>
       </ChakraProvider>
