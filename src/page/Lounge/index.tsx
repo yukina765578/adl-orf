@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import { Box, Image } from '@chakra-ui/react'
 import Popup from '../../global/components/Modal'
 import Overlay from '../../global/components/Overlay'
-import Map from '../../image/Lounge/map.png'
 import Morimoto from '../../image/ModalImage/morimoto.png'
 import LoungeMap from '../../global/components/maps/LoungeMap'
 
@@ -27,10 +26,10 @@ const Lounge = () => {
     })
 
     const handleNextModal = () => {
-        currentModal === 3 ? setCurrentModal(1) : setCurrentModal(currentModal + 1)
+        currentModal === 12 ? setCurrentModal(1) : setCurrentModal(currentModal + 1)
     }
     const handlePrevModal = () => {
-        currentModal === 1 ? setCurrentModal(3) : setCurrentModal(currentModal - 1)
+        currentModal === 1 ? setCurrentModal(12) : setCurrentModal(currentModal - 1)
     }
     const containerBox = {
         width: '100vw',
