@@ -19,7 +19,7 @@ const Loading = () => {
         pointerEvents: loading ? 'auto' : 'none',
     }
     useEffect(() => {
-        setTimeout(() => setLoading(false), 3300);
+        setTimeout(() => setLoading(false), 1500);
     }, [])
     return(
         <Box sx={loadingBox}>
