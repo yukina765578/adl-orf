@@ -1,6 +1,7 @@
 import { useState, useEffect} from 'react'
 import { Box, Image } from '@chakra-ui/react'
 import Logo from '../image/logo.png'
+import PreloadImages from '../global/components/Preload'
 
 const Loading = () => {
     const [loading, setLoading] = useState<boolean>(true);

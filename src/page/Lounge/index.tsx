@@ -29,7 +29,6 @@ const Lounge: React.FC<props> = ({ currentModal, setCurrentModal, handleNextModa
             });
         };
         window.addEventListener('resize', handleResize);
-        
         return()=>{
             window.removeEventListener('resize', handleResize)
         }
@@ -81,7 +80,7 @@ const Lounge: React.FC<props> = ({ currentModal, setCurrentModal, handleNextModa
                         isOpen={(3 === currentModal)}
                         modalImage={Morimoto}
                         modalTitle='タイトル３'
-                        name='名前３'
+                        name='名前'
                         modalContent='Caption'
                         modalButtonContent='03'
                         onNextModal={handleNextModal}

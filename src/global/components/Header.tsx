@@ -7,11 +7,15 @@ const Header = () => {
         padding: 2,
         top: 0,
         left: 0,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
     }
     return(
         <Box sx={headerStyle}>
-            <Image src={Title} marginBottom={3}/>
+            <Image src={Title} marginBottom={3} maxH={10}/>
             <Divider />
         </Box>
     )

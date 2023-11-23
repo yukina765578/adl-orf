@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
+import Home from '../page/Home';
 import Lounge from '../page/Lounge';
 import Atelier1 from '../page/Atelier1';
 import Atelier2 from '../page/Atelier2';
@@ -28,6 +29,7 @@ const AppRoutes: React.FC = () => {
 
     return(
         <Routes>
+            <Route path='/' element={<Home />} />
             <Route path='/lounge' element={<Lounge {...{currentModal, setCurrentModal, handleNextModal, handlePrevModal}} />} />
             <Route path='/atelier1' element={<Atelier1 {...{currentModal, setCurrentModal, handleNextModal, handlePrevModal}} />} />
             <Route path='/atelier2' element={<Atelier2 {...{currentModal, setCurrentModal, handleNextModal, handlePrevModal}} />} />
