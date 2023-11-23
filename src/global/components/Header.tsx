@@ -1,24 +1,52 @@
 import { Box, Divider, Image } from '@chakra-ui/react';
-import Title from '../../image/Title.png'
+import Title from '../../image/Title.png';
+import { SetStateAction, useEffect, useRef } from 'react';
 
-const Header = () => {
-    const headerStyle = {
-        position: 'absolute',
-        padding: 2,
-        top: 0,
-        left: 0,
-        backgroundColor: 'white',
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    }
-    return(
-        <Box sx={headerStyle}>
-            <Image src={Title} marginBottom={3} maxH={10}/>
-            <Divider />
-        </Box>
-    )
+interface HeaderProps {
+  setHeaderHeight: React.Dispatch<SetStateAction<number>>;
 }
 
-export default Header
+const Header: React.FC<HeaderProps> = ({ setHeaderHeight }) => {
+  const headerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const updateHeaderHeight = () => {
+      if (headerRef.current) {
+        setHeaderHeight(headerRef.current.offsetHeight);
+      }
+    };
+
+    // Update the header height initially and on window resize
+    updateHeaderHeight();
+    window.addEventListener('resize', updateHeaderHeight);
+
+    return () => {
+      window.removeEventListener('resize', updateHeaderHeight);
+    };
+  }, [setHeaderHeight]);
+
+  const handleOnLoad = () => {
+    if (headerRef.current) {
+      setHeaderHeight(headerRef.current.offsetHeight);
+    }
+  };
+
+  return (
+    <Box sx={{
+      position: 'absolute',
+      padding: 2,
+      top: 0,
+      left: 0,
+      backgroundColor: 'white',
+      width: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+    }} ref={headerRef}>
+      <Image src={Title} marginBottom={3} maxH={10} onLoad={handleOnLoad} />
+      <Divider />
+    </Box>
+  );
+};
+
+export default Header;

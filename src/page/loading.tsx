@@ -1,7 +1,6 @@
 import { useState, useEffect} from 'react'
 import { Box, Image } from '@chakra-ui/react'
 import Logo from '../image/logo.png'
-import PreloadImages from '../global/components/Preload'
 
 const Loading = () => {
     const [loading, setLoading] = useState<boolean>(true);
@@ -14,10 +13,10 @@ const Loading = () => {
         justifyContent: 'center',
         alignItems: 'center',
         position: 'fixed',
-        zIndex: 10,
+        zIndex: 999,
         opacity: loading ? 1 : 0,
         transition: 'opacity 1s ease-out',
-        pointerEvents: loading ? 'auto' : 'none',
+        pointerEvents: loading ? 'auto' : 'none'
     }
     useEffect(() => {
         setTimeout(() => setLoading(false), 1500);

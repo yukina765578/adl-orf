@@ -15,7 +15,7 @@ const Atelier1Map = () => {
         width: 'auto',
         height: '100%',
         transform: 'scale(2.4)',
-        opacity: 0.4
+        opacity: 0.8
     }
     
 
