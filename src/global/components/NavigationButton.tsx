@@ -47,8 +47,6 @@ const NavigationButton: React.FC<NavigationButtonProps> = ({imagePosition, image
         position: 'absolute',
         transform: 'translate(-50%, -50%)',
         backgroundColor: 'rgba(256, 256, 256, 0.8)',
-        padding: 5,
-        borderRadius: '50%'
     }
     return(
         <Box sx={buttonStyle} ref={buttonRef}> {children} </Box>
