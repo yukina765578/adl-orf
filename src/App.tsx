@@ -13,7 +13,15 @@ const customTheme = extendTheme({
     body: 'Aril, sans-serif',
     heading: 'Aril, sans-serif',
   },
-});
+  Button: {
+    sizes: {
+      xs: {
+        w: '4px',
+        h: '4px',
+      },
+    },
+  },
+})
 
 function App() {
   const [headerHeight, setHeaderheight] = useState<number>(0)

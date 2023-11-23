@@ -3,13 +3,14 @@ import {Box, Image, Fade } from '@chakra-ui/react'
 import Floor1 from '../../image/Home/1f.png'
 import Floor2 from '../../image/Home/2f.png'
 import NavigationButton from '../../global/components/NavigationButton';
-import NaviLink from '../../global/components/NaviLink';
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface homeProp {
     headerHeight: number
 }
 const Home: React.FC<homeProp> = ({headerHeight}) => {
+    const navigate = useNavigate();
     
     const [viewportSize, setViewportSize] = useState({
         width:window.innerWidth,
@@ -85,7 +86,20 @@ const Home: React.FC<homeProp> = ({headerHeight}) => {
           setImage2Position({ top: rect.top, left: rect.left });
           setImage2Size({ width: rect.width, height: rect.height });
         }
-      }, [headerHeight]);
+    }, [headerHeight]);
+
+    const handleOnClickLounge = () => {
+        navigate('/lounge');
+    };
+
+    const handleOnClickAtelier1 = () => {
+        navigate('/atelier1');
+    }
+
+    const handleOnClickAtelier2 = () => {
+        navigate('/atelier2');
+    }
+
     return(
         <Fade in={true} transition={{enter: {duration: 0.3}, exit: {duration: 0.3}}}>
             <Box sx={contentBox}>
@@ -95,23 +109,17 @@ const Home: React.FC<homeProp> = ({headerHeight}) => {
                         style={imageStyle}
                         objectFit={'contain'}
                     />
-                    <NavigationButton imagePosition={image2Position} imageSize={image2Size} buttonPosition={{width: 366.716, height: 222.66 }} headerHeight={headerHeight}>
-                        <NaviLink to='/atelier2' _activeLink={{textDecoration: 'underline'}}>atelier2</NaviLink>
-                    </NavigationButton>
+                    <NavigationButton imagePosition={image2Position} imageSize={image2Size} buttonPosition={{width: 366.716, height: 222.66 }} headerHeight={headerHeight} handleOnClick={handleOnClickAtelier2} />
                 </Box>
-            
+                <NavigationButton imagePosition={image2Position} imageSize={image2Size} buttonPosition={{width: 366.716, height: 222.66 }} headerHeight={headerHeight} handleOnClick={handleOnClickAtelier2} />
                 <Box sx={floorBox} ref={floor1Ref}>
                     <Image
                         src={Floor1}
                         style={imageStyle}
                         objectFit={'contain'}
                     />
-                    <NavigationButton imagePosition={image1Position} imageSize={image1Size} buttonPosition={{width: 397.216, height: 126.008 }} headerHeight={headerHeight}>
-                        <NaviLink to='/lounge' _activeLink={{textDecoration: 'underline'}}>Lounge</NaviLink>
-                    </NavigationButton>
-                    <NavigationButton imagePosition={image1Position} imageSize={image1Size} buttonPosition={{width: 116.716, height: 197.936 }} headerHeight={headerHeight}>
-                        <NaviLink to='/atelier1' _activeLink={{textDecoration: 'underline'}}>atelier1</NaviLink>
-                    </NavigationButton>
+                    <NavigationButton imagePosition={image1Position} imageSize={image1Size} buttonPosition={{width: 397.216, height: 126.008 }} headerHeight={headerHeight} handleOnClick={handleOnClickLounge}/>
+                    <NavigationButton imagePosition={image1Position} imageSize={image1Size} buttonPosition={{width: 116.716, height: 197.936 }} headerHeight={headerHeight} handleOnClick={handleOnClickAtelier1} />
                 </Box>
             </Box>    
         </Fade>

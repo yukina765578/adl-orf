@@ -1,16 +1,15 @@
-import { Box } from '@chakra-ui/react'
-import { useRef, useEffect, useState } from 'react'
+import { Box, Button } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
 
 interface NavigationButtonProps {
     imagePosition: {top: number, left: number},
     imageSize: {width: number, height: number};
     buttonPosition: {width: number, height: number};
     headerHeight: number;
-    children: React.ReactNode;
+    handleOnClick: () => void;
 }
 
-const NavigationButton: React.FC<NavigationButtonProps> = ({imagePosition, imageSize, buttonPosition, headerHeight, children}) => {
-    const buttonRef = useRef<HTMLDivElement>(null);
+const NavigationButton: React.FC<NavigationButtonProps> = ({imagePosition, imageSize, buttonPosition, headerHeight, handleOnClick}) => {
     const [coordinate, setCoordinate] = useState({
         top: 0,
         left: 0
@@ -44,12 +43,21 @@ const NavigationButton: React.FC<NavigationButtonProps> = ({imagePosition, image
         display: 'flex',
         top: coordinate.top,
         left: coordinate.left,
-        position: 'absolute',
         transform: 'translate(-50%, -50%)',
-        backgroundColor: 'rgba(256, 256, 256, 0.8)',
+        borderRadius: '50%'
     }
     return(
-        <Box sx={buttonStyle} ref={buttonRef}> {children} </Box>
+        <Button style={buttonStyle} onClick={handleOnClick} backgroundColor="transparent" position="absolute">
+            <Box position="absolute" width={4} height={4} backgroundColor="black" />
+            <Box
+                position="absolute"
+                width={8}
+                height={8}
+                borderWidth={2}
+                borderColor="black"
+                backgroundColor="transparent"
+            />
+        </Button>
     )
 }
 
