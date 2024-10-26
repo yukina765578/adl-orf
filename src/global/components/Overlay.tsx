@@ -1,5 +1,4 @@
 import { Box } from "@chakra-ui/layout"
-import { useState } from "react"
 
 interface overlayProps {
     isOpen: boolean;

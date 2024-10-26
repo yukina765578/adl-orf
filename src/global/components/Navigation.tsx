@@ -24,9 +24,9 @@ const Navigation = () => {
     if (location.pathname !== '/'){
         return(
             <Box sx={boxStyle}>
-                <NaviLink to='/atelier2' _activeLink={{textDecoration: 'underline'}}>Atelier2</NaviLink>
-                <NaviLink to='/atelier1' _activeLink={{textDecoration: 'underline'}}>Atelier1</NaviLink>
-                <NaviLink to='/lounge' _activeLink={{textDecoration: 'underline'}}>Lounge</NaviLink>
+                <NaviLink to='/lounge' _activeLink={{textDecoration: 'underline'}}>1階　ラウンジ</NaviLink>
+                <NaviLink to='/atelier1' _activeLink={{textDecoration: 'underline'}}>1階　アトリエ</NaviLink>
+                <NaviLink to='/atelier2' _activeLink={{textDecoration: 'underline'}}>2階　アトリエ</NaviLink>
             </Box>
         )
     } else {
