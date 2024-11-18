@@ -9,6 +9,13 @@ export interface NotionModalContent {
     modalContent?: {
       rich_text: Array<{ plain_text: string }>;
     };
+    modalImage?: {
+      files: Array<{
+        file?: { url: string };
+        external?: { url: string };
+        name: string;
+      }>;
+    };
   };
 }
 
@@ -17,6 +24,7 @@ export interface PopupContent {
   modalTitle: string;
   name: string;
   modalContent: string;
+  modalImage: string;
   buttonPosition: {
     width: number;
     height: number;

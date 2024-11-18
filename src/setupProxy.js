@@ -1,47 +1,39 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = function(app) {
+  const apiKey = process.env.REACT_APP_NOTION_API_KEY;
+  
+  if (!apiKey) {
+    console.error('WARNING: REACT_APP_NOTION_API_KEY is not set in proxy');
+  }
+
   app.use(
-    '/notion',
+    '/api/notion',
     createProxyMiddleware({
       target: 'https://api.notion.com/v1',
       changeOrigin: true,
       pathRewrite: {
-        '^/notion': '',
+        '^/api/notion': '',
       },
       headers: {
-        'Authorization': `Bearer ${process.env.REACT_APP_NOTION_API_KEY}`,
+        'Authorization': `Bearer ${apiKey}`,
         'Notion-Version': '2022-06-28',
         'Content-Type': 'application/json',
       },
-      // リクエストのデバッグ
       onProxyReq: (proxyReq, req, res) => {
         console.log('Proxy Request:', {
           path: proxyReq.path,
-          method: proxyReq.method,
           headers: proxyReq.getHeaders()
         });
       },
-      // レスポンスのデバッグ
       onProxyRes: (proxyRes, req, res) => {
-        const originalSend = res.send;
-        res.send = function(data) {
-          console.log('Proxy Response:', {
-            statusCode: proxyRes.statusCode,
-            headers: proxyRes.headers,
-            data: data.toString()
-          });
-          return originalSend.call(this, data);
-        };
+        console.log('Proxy Response:', {
+          statusCode: proxyRes.statusCode,
+          headers: proxyRes.headers
+        });
       },
-      // エラーハンドリング
       onError: (err, req, res) => {
         console.error('Proxy Error:', err);
-        res.status(500).json({ 
-          error: 'Proxy Error', 
-          message: err.message,
-          stack: err.stack
-        });
       }
     })
   );

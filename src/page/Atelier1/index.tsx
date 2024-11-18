@@ -16,7 +16,12 @@ interface Props {
   handlePrevModal: () => void;
 }
 
-const Atelier1: React.FC<Props> = ({ currentModal, setCurrentModal, handleNextModal, handlePrevModal }) => {
+const Atelier1: React.FC<Props> = ({ 
+  currentModal, 
+  setCurrentModal, 
+  handleNextModal, 
+  handlePrevModal 
+}) => {
   const [viewportSize, setViewportSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -78,7 +83,7 @@ const Atelier1: React.FC<Props> = ({ currentModal, setCurrentModal, handleNextMo
               viewportSize={viewportSize}
               buttonPosition={content.buttonPosition}
               isOpen={content.id === currentModal}
-              modalImage={Morimoto}
+              modalImage={content.modalImage || Morimoto} // NotionのイメージURLを使用、なければフォールバック
               modalTitle={content.modalTitle}
               name={content.name}
               modalContent={content.modalContent}
