@@ -1,4 +1,3 @@
-import { notionClient } from './client';
 import { NotionModalContent, PopupContent } from './types';
 
 const getButtonPosition = (id: number) => {
@@ -16,28 +15,60 @@ const getButtonPosition = (id: number) => {
 export const fetchModalContents = async (): Promise<PopupContent[]> => {
   try {
     const response = await fetch(
-      `${notionClient.baseUrl}/databases/${notionClient.databaseId}/query`,
+      `/notion/databases/${process.env.REACT_APP_NOTION_DATABASE_ID}/query`,
       {
         method: 'POST',
-        headers: notionClient.headers,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          sorts: [
+            {
+              property: 'title',
+              direction: 'ascending'
+            }
+          ]
+        })
       }
     );
 
     if (!response.ok) {
-      throw new Error('Failed to fetch data from Notion');
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     const data = await response.json();
-    
-    return data.results.map((result: NotionModalContent) => ({
-      id: parseInt(result.properties.title.title[0].plain_text),
-      modalTitle: result.properties.title.title[0].plain_text,
-      name: result.properties.name.rich_text[0].plain_text,
-      modalContent: result.properties.modalContent.rich_text[0].plain_text,
-      buttonPosition: getButtonPosition(parseInt(result.properties.title.title[0].plain_text)),
-    }));
+    console.log('Notion API Response:', data); // レスポンスデータの確認
+
+    // データの構造を安全に処理
+    return data.results.map((result: any) => {
+      console.log('Processing result:', result); // 各結果オブジェクトの確認
+
+      // プロパティの存在確認と安全な取得
+      const title = result.properties?.title?.title?.[0]?.plain_text;
+      const name = result.properties?.name?.rich_text?.[0]?.plain_text;
+      const content = result.properties?.modalContent?.rich_text?.[0]?.plain_text;
+
+      if (!title) {
+        console.error('Missing title for result:', result);
+        throw new Error('Missing required title property');
+      }
+
+      const id = parseInt(title);
+
+      return {
+        id,
+        modalTitle: title,
+        name: name || 'Default Name',
+        modalContent: content || 'Default Content',
+        buttonPosition: getButtonPosition(id),
+      };
+    });
   } catch (error) {
-    console.error('Error fetching Notion data:', error);
+    console.error('Error fetching Notion data:', {
+      error,
+      databaseId: process.env.REACT_APP_NOTION_DATABASE_ID,
+      fullError: error instanceof Error ? error.stack : undefined,
+    });
     throw error;
   }
 };
