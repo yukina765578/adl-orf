@@ -14,21 +14,21 @@ interface Props {
     setCurrentModal: React.Dispatch<React.SetStateAction<number>>;
     handleNextModal: () => void;
     handlePrevModal: () => void;
+    data: PopupContent[];
 }
 
 const Lounge: React.FC<Props> = ({ 
     currentModal, 
     setCurrentModal, 
     handleNextModal, 
-    handlePrevModal 
+    handlePrevModal,
+    data
 }) => {
     const [viewportSize, setViewportSize] = useState({
         width: window.innerWidth,
         height: window.innerHeight,
     });
     const [popupContents, setPopupContents] = useState<PopupContent[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
 
     const location = useLocation();
     const { state } = location;
@@ -45,34 +45,10 @@ const Lounge: React.FC<Props> = ({
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-
     useEffect(() => {
-        const loadNotionData = async () => {
-            try {
-                setIsLoading(true);
-                const data = await fetchModalContents();
-                // Lounge用のデータをフィルタリング（ID 1-12）
-                const loungeData = data.filter(content => 
-                    content.id >= 1 && content.id <= 12
-                );
-                setPopupContents(loungeData);
-            } catch (err) {
-                setError(err instanceof Error ? err.message : 'Failed to fetch modal contents');
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        
-        loadNotionData();
-    }, []);
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
+      const loungeData = data.filter(content => 1 <= content.id && content.id <= 10);
+      setPopupContents(loungeData);
+    }, [data]);
 
     return (
         <>

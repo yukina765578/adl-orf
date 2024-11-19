@@ -15,9 +15,9 @@ const NavigationButton: React.FC<NavigationButtonProps> = ({imagePosition, image
         left: 0
     })
     useEffect(() => {
+        const imageActualWidth: number = 350
+        const imageActualHeight: number = 550
         const scalingScalar = () => {
-            const imageActualWidth: number =  587.43
-            const imageActualHeight: number = 323.87 
             const heightScaling = imageSize.height / imageActualHeight
             const widthScaling = imageSize.width / imageActualWidth
             if (heightScaling < widthScaling){
@@ -29,12 +29,12 @@ const NavigationButton: React.FC<NavigationButtonProps> = ({imagePosition, image
         }
         const scaling = scalingScalar()
         const buttonTop = buttonPosition.height * scaling;
-        const imageScaledHeight = 323.87 * scaling
+        const imageScaledHeight = imageActualHeight * scaling
         const imageTopPosition = (imageSize.height - imageScaledHeight) / 2
         const topCoordinate = imagePosition.top - headerHeight + imageTopPosition + buttonTop;
     
         const buttonLeft = buttonPosition.width * scaling;
-        const imageScaledWidth = 587.43 * scaling
+        const imageScaledWidth = imageActualWidth * scaling
         const imageLeftPosition = (imageSize.width - imageScaledWidth) / 2
         const leftCoordinate = imageLeftPosition + buttonLeft;
         setCoordinate({top:topCoordinate, left:leftCoordinate})

@@ -1,11 +1,12 @@
 import { BrowserRouter as Router } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ChakraProvider, theme as chakraTheme, Box, extendTheme  } from '@chakra-ui/react';
 import Loading from './page/loading';
 import AppRoutes from './global/Routes';
 import Navigation from './global/components/Navigation';
 import Header from './global/components/Header';
 import BackButton from './global/components/BackButton';
+import { PopupContent } from './notion/types';
 
 const customTheme = extendTheme({
   fonts: {
@@ -25,35 +26,14 @@ const customTheme = extendTheme({
 
 function App() {
   const [headerHeight, setHeaderheight] = useState<number>(0)
-
-  useEffect(() => {
-    // Image URLs to preload
-    const imageUrls = [
-      '/image/Home/1f.png',
-      '/image/Home/2f.png',
-      '/image/Atelier1/map.png',
-      '/image/Atelier2/map.png',
-      '/image/Lounge/mpa.png',
-      '/image/ModalImage/morimoto.png'
-    ];
-
-    // Preload images
-    const preloadImages = () => {
-      imageUrls.forEach((url) => {
-        const img = new Image();
-        img.src = url;
-      });
-    };
-
-    preloadImages();
-  }, []);
+  const [data, setData] = useState<PopupContent[]>([])
 
   return (
     <Router>
       <ChakraProvider theme={customTheme}>
         <Box>
-          <Loading />
-          <AppRoutes headerHeight={headerHeight}/>
+          <Loading setData={setData}/>
+          <AppRoutes headerHeight={headerHeight} data={data}/>
           <Header setHeaderHeight={setHeaderheight}/>
           <BackButton headerHeight={headerHeight}/>
           <Navigation />

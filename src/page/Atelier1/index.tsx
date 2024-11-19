@@ -9,26 +9,27 @@ import OpenFade from '../../global/components/OpenFade';
 import { PopupContent } from '../../notion/types';
 import { fetchModalContents } from '../../notion/api';
 
+
 interface Props {
   currentModal: number;
   setCurrentModal: React.Dispatch<React.SetStateAction<number>>;
   handleNextModal: () => void;
   handlePrevModal: () => void;
+  data: PopupContent[];
 }
 
 const Atelier1: React.FC<Props> = ({ 
   currentModal, 
   setCurrentModal, 
   handleNextModal, 
-  handlePrevModal 
+  handlePrevModal,
+  data
 }) => {
   const [viewportSize, setViewportSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
   const [popupContents, setPopupContents] = useState<PopupContent[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   
   const location = useLocation();
   const { state } = location;
@@ -47,32 +48,9 @@ const Atelier1: React.FC<Props> = ({
   }, []);
 
   useEffect(() => {
-    const loadNotionData = async () => {
-      try {
-        setIsLoading(true);
-        const data = await fetchModalContents();
-        // Atelier1用のデータをフィルタリング（ID 13-20）
-        const atelier1Data = data.filter(content => 
-          content.id >= 13 && content.id <= 20
-        );
-        setPopupContents(atelier1Data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to fetch modal contents');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    
-    loadNotionData();
-  }, []);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+    const atelier1Data = data.filter(content => 15 <= content.id && content.id <= 20);
+    setPopupContents(atelier1Data);
+  }, [data]);
 
   return (
     <>
