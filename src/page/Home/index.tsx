@@ -39,7 +39,7 @@ const Home: React.FC<homeProp> = ({headerHeight}) => {
         position: 'absolute',
         top: `${headerHeight}px`,
         width: '100vw',
-        height: contentHeight,
+        height: contentHeight * 2,
         justifyContent: 'center',
         alignItems: 'center',
         display: 'flex',
@@ -47,7 +47,7 @@ const Home: React.FC<homeProp> = ({headerHeight}) => {
     }
     const floorBox = {
         width: '100vw',
-        height: contentHeight / 2,
+        height: contentHeight,
         overflow: 'hidden',
         display: 'flex',
         justifyContent: 'center',
@@ -56,7 +56,7 @@ const Home: React.FC<homeProp> = ({headerHeight}) => {
     }
     const imageStyle = {
         width: '100%',
-        height: contentHeight / 2,
+        height: contentHeight,
         transform: 'scale(1)',
         opacity: 0.7,
     }
@@ -103,14 +103,6 @@ const Home: React.FC<homeProp> = ({headerHeight}) => {
     return(
         <Fade in={true} transition={{enter: {duration: 0.3}, exit: {duration: 0.3}}}>
             <Box sx={contentBox}>
-                <Box sx={floorBox} ref={floor2Ref}>
-                    <Image
-                        src={Floor2}
-                        style={imageStyle}
-                        objectFit={'contain'}
-                    />
-                    <NavigationButton imagePosition={image2Position} imageSize={image2Size} buttonPosition={{width: 222.5, height: 102 }} headerHeight={headerHeight} handleOnClick={handleOnClickAtelier2} />
-                </Box>
                 <Box sx={floorBox} ref={floor1Ref}>
                     <Image
                         src={Floor1}
@@ -119,6 +111,14 @@ const Home: React.FC<homeProp> = ({headerHeight}) => {
                     />
                     <NavigationButton imagePosition={image1Position} imageSize={image1Size} buttonPosition={{width: 190.2, height: 197.936 }} headerHeight={headerHeight} handleOnClick={handleOnClickLounge}/>
                     <NavigationButton imagePosition={image1Position} imageSize={image1Size} buttonPosition={{width: 471, height: 127 }} headerHeight={headerHeight} handleOnClick={handleOnClickAtelier1} />
+                </Box>
+                <Box sx={floorBox} ref={floor2Ref}>
+                    <Image
+                        src={Floor2}
+                        style={imageStyle}
+                        objectFit={'contain'}
+                    />
+                    <NavigationButton imagePosition={image2Position} imageSize={image2Size} buttonPosition={{width: 222.5, height: 102 }} headerHeight={headerHeight} handleOnClick={handleOnClickAtelier2} />
                 </Box>
             </Box>    
         </Fade>

@@ -1,5 +1,5 @@
 import { BrowserRouter as Router } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ChakraProvider, theme as chakraTheme, Box, extendTheme  } from '@chakra-ui/react';
 import Loading from './page/loading';
 import AppRoutes from './global/Routes';
@@ -25,28 +25,6 @@ const customTheme = extendTheme({
 
 function App() {
   const [headerHeight, setHeaderheight] = useState<number>(0)
-
-  useEffect(() => {
-    // Image URLs to preload
-    const imageUrls = [
-      '/image/Home/1f.png',
-      '/image/Home/2f.png',
-      '/image/Atelier1/map.png',
-      '/image/Atelier2/map.png',
-      '/image/Lounge/mpa.png',
-      '/image/ModalImage/morimoto.png'
-    ];
-
-    // Preload images
-    const preloadImages = () => {
-      imageUrls.forEach((url) => {
-        const img = new Image();
-        img.src = url;
-      });
-    };
-
-    preloadImages();
-  }, []);
 
   return (
     <Router>
