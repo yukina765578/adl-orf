@@ -1,4 +1,7 @@
-import { NotionModalContent, PopupContent, Grade } from './types';
+import axios from 'axios';
+import { NotionModalContent, PopupContent } from './types';
+
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const getButtonPosition = (id: number) => {
   // Lounge用のボタン位置計算（ID: 1-12）
@@ -46,98 +49,39 @@ const getButtonPosition = (id: number) => {
   };
 };
 
-const validateEnvironmentVars = () => {
-  const apiKey = process.env.REACT_APP_NOTION_API_KEY;
-  const databaseId = process.env.REACT_APP_NOTION_DATABASE_ID;
-
-  console.log('Environment Variables Check:', {
-    hasApiKey: !!apiKey,
-    hasDatabaseId: !!databaseId,
-    apiKeyLength: apiKey?.length,
-    databaseIdLength: databaseId?.length
-  });
-
-  if (!apiKey) {
-    throw new Error('REACT_APP_NOTION_API_KEY is not set');
-  }
-  if (!databaseId) {
-    throw new Error('REACT_APP_NOTION_DATABASE_ID is not set');
-  }
-
-  return { apiKey, databaseId };
-};
-
 export const fetchModalContents = async (): Promise<PopupContent[]> => {
-  try {
-    const { apiKey, databaseId } = validateEnvironmentVars();
-
-    const response = await fetch(
-      `/api/notion/databases/${databaseId}/query`,
-      {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${apiKey}`,
-          'Notion-Version': '2022-06-28',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          sorts: [
-            {
-              property: '配置番号',
-              direction: 'ascending'
-            }
-          ]
-        })
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    console.log('Notion API Response:', data);
-
-    return data.results.map((result: NotionModalContent) => {
-      const id = result.properties?.配置番号?.number;
-      const title = result.properties?.展示名?.title?.[0]?.plain_text;
-      const name = result.properties?.展示者?.rich_text?.[0]?.plain_text;
-      const content = result.properties?.展示概要?.rich_text?.[0]?.plain_text;
-      const grade = result.properties?.学年?.select?.name;
-      const contentUrl = result.properties?.展示内容リンク?.url;
-      
-      const imageFile = result.properties?.展示表紙?.files?.[0];
-      const imageUrl = imageFile?.file?.url || imageFile?.external?.url || '';
+  try{
+    const response = await axios.post(`${API_BASE_URL}/api/modal-contents`);
+    const data = response.data.data
+    console.log(data)
+    return data.map((data: NotionModalContent) => {
+      const id = data.id;
+      const modalTitle = data.modalTitle;
+      const name = data.name;
+      const modalContent = data.modalContent;
+      const grade = data.grade;
+      const modalImage = data.modalImage;
+      const contentUrl = data.contentUrl;
 
       if (!id) {
         throw new Error('配置番号が設定されていません');
       }
 
-      const validGrade = (grade?: string): grade is Grade => {
-        const validGrades: Grade[] = ['B1', 'B2', 'B3', 'B4', 'M1', 'M2'];
-        return !!grade && validGrades.includes(grade as Grade);
-      };
-
-      if (!validGrade(grade)) {
-        console.warn(`ID ${id} の学年が無効です: ${grade}`);
-      }
-
+      const buttonPosition = getButtonPosition(id);
+      
       return {
         id,
-        modalTitle: title || 'タイトルなし',
-        name: name || '名前なし',
-        modalContent: content || '内容なし',
-        grade: validGrade(grade) ? grade : 'B1',
-        modalImage: imageUrl,
+        modalTitle,
+        name,
+        modalContent,
+        grade,
+        modalImage,
         contentUrl,
-        buttonPosition: getButtonPosition(id),
+        buttonPosition,
       };
     });
   } catch (error) {
-    console.error('Error fetching Notion data:', {
-      error,
-      databaseId: process.env.REACT_APP_NOTION_DATABASE_ID,
-    });
+    console.error('Error fetching modal contents:', error);
     throw error;
   }
 };

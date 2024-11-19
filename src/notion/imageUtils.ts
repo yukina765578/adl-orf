@@ -1,3 +1,4 @@
+// Note: 使ってるか不明なので変更してないです
 import { PopupContent } from './types';
 
 export const NOTION_IMAGE_EXPIRY_TIME = 3600; // 1時間
