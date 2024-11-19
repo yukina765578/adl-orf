@@ -1,3 +1,12 @@
+export interface NotionProperties {
+  [key: string]: any;
+}
+
+export interface NotionDatabaseResponse {
+  results: NotionModalContent[];
+  [key: string]: any;
+}
+
 export interface NotionModalContent {
   properties: {
     配置番号?: {
