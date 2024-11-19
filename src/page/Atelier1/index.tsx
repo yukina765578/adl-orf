@@ -1,167 +1,107 @@
-import React, {useEffect, useState} from 'react'
-import { Box } from '@chakra-ui/react'
-import { useLocation } from 'react-router-dom'
-import Popup from '../../global/components/Modal'
-import Overlay from '../../global/components/Overlay'
-import Morimoto from '../../image/ModalImage/morimoto.png'
-import Atelier1Map from '../../global/components/maps/Atelier1Map'
-import OpenFade from '../../global/components/OpenFade'
+import React, { useEffect, useState } from 'react';
+import { Box } from '@chakra-ui/react';
+import { useLocation } from 'react-router-dom';
+import Popup from '../../global/components/Modal';
+import Overlay from '../../global/components/Overlay';
+import Morimoto from '../../image/ModalImage/morimoto.png';
+import Atelier1Map from '../../global/components/maps/Atelier1Map';
+import OpenFade from '../../global/components/OpenFade';
+import { PopupContent } from '../../notion/types';
+import { fetchModalContents } from '../../notion/api';
 
-interface props {
-    currentModal: number;
-    setCurrentModal: React.Dispatch<React.SetStateAction<number>>
-    handleNextModal: () => void;
-    handlePrevModal: () => void;
+interface Props {
+  currentModal: number;
+  setCurrentModal: React.Dispatch<React.SetStateAction<number>>;
+  handleNextModal: () => void;
+  handlePrevModal: () => void;
 }
 
+const Atelier1: React.FC<Props> = ({ 
+  currentModal, 
+  setCurrentModal, 
+  handleNextModal, 
+  handlePrevModal 
+}) => {
+  const [viewportSize, setViewportSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+  const [popupContents, setPopupContents] = useState<PopupContent[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  
+  const location = useLocation();
+  const { state } = location;
 
-const Atelier1: React.FC<props> = ({ currentModal, setCurrentModal, handleNextModal, handlePrevModal }) => {
-    const [viewportSize, setViewportSize] = useState({
-        width:window.innerWidth,
+  useEffect(() => {
+    const handleResize = () => {
+      setViewportSize({
+        width: window.innerWidth,
         height: window.innerHeight,
-    })
-    const location = useLocation();
-    const { state } = location;
-    useEffect(() => {
-        const handleResize = () => {
-            setViewportSize({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            });
-        };
-        window.addEventListener('resize', handleResize);
-        return()=>{
-            window.removeEventListener('resize', handleResize)
-        }
-    })
+      });
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
-    const containerBox = {
-        width: '100vw',
-        height: '100vh'
-    }
-    return(
-        <>
-            <OpenFade shouldFade={state}>
-                <Box sx={containerBox}>
-                    <Overlay isOpen={(currentModal > 0)} />
-                    <Atelier1Map />
-                    <Popup
-                        id={13}
-                        viewportSize={viewportSize}
-                        buttonPosition={{width: 9.18, height: 159.359 }}
-                        isOpen={(13 === currentModal)}
-                        modalImage={Morimoto}
-                        modalTitle='タイトル13'
-                        name='名前 B3'
-                        modalContent='Caption'
-                        modalButtonContent='13'
-                        onNextModal={handleNextModal}
-                        onPrevModal={handlePrevModal}
-                        setCurrentModal={setCurrentModal}
-                    />
-                    <Popup
-                        id={14}
-                        viewportSize={viewportSize}
-                        buttonPosition={{width: 9.18, height: 141.349 }}
-                        isOpen={(14 === currentModal)}
-                        modalImage={Morimoto}
-                        modalTitle='タイトル14'
-                        name='名前 B3'
-                        modalContent='Caption'
-                        modalButtonContent='14'
-                        onNextModal={handleNextModal}
-                        onPrevModal={handlePrevModal}
-                        setCurrentModal={setCurrentModal}
-                    />
-                    <Popup
-                        id={15}
-                        viewportSize={viewportSize}
-                        buttonPosition={{width: 9.18, height: 123.349 }}
-                        isOpen={(15 === currentModal)}
-                        modalImage={Morimoto}
-                        modalTitle='タイトル15'
-                        name='名前 B3'
-                        modalContent='Caption'
-                        modalButtonContent='15'
-                        onNextModal={handleNextModal}
-                        onPrevModal={handlePrevModal}
-                        setCurrentModal={setCurrentModal}
-                    />
-                    <Popup
-                        id={16}
-                        viewportSize={viewportSize}
-                        buttonPosition={{width: 9.18, height: 105.358 }}
-                        isOpen={(16 === currentModal)}
-                        modalImage={Morimoto}
-                        modalTitle='タイトル16'
-                        name='名前 B3'
-                        modalContent='Caption'
-                        modalButtonContent='16'
-                        onNextModal={handleNextModal}
-                        onPrevModal={handlePrevModal}
-                        setCurrentModal={setCurrentModal}
-                    />
-                    <Popup
-                        id={17}
-                        viewportSize={viewportSize}
-                        buttonPosition={{width: -9.18, height: 105.358 }}
-                        isOpen={(17 === currentModal)}
-                        modalImage={Morimoto}
-                        modalTitle='タイトル17'
-                        name='名前 B3'
-                        modalContent='Caption'
-                        modalButtonContent='17'
-                        onNextModal={handleNextModal}
-                        onPrevModal={handlePrevModal}
-                        setCurrentModal={setCurrentModal}
-                    />
-                    <Popup
-                        id={18}
-                        viewportSize={viewportSize}
-                        buttonPosition={{width: -9.18, height: 123.349 }}
-                        isOpen={(18 === currentModal)}
-                        modalImage={Morimoto}
-                        modalTitle='タイトル18'
-                        name='名前 B3'
-                        modalContent='Caption'
-                        modalButtonContent='18'
-                        onNextModal={handleNextModal}
-                        onPrevModal={handlePrevModal}
-                        setCurrentModal={setCurrentModal}
-                    />
-                    <Popup
-                        id={19}
-                        viewportSize={viewportSize}
-                        buttonPosition={{width: -9.18, height: 141.349 }}
-                        isOpen={(19 === currentModal)}
-                        modalImage={Morimoto}
-                        modalTitle='タイトル19'
-                        name='名前 B3'
-                        modalContent='Caption'
-                        modalButtonContent='19'
-                        onNextModal={handleNextModal}
-                        onPrevModal={handlePrevModal}
-                        setCurrentModal={setCurrentModal}
-                    />
-                    <Popup
-                        id={20}
-                        viewportSize={viewportSize}
-                        buttonPosition={{width: -9.18, height: 159.359 }}
-                        isOpen={(20 === currentModal)}
-                        modalImage={Morimoto}
-                        modalTitle='タイトル20'
-                        name='名前 B3'
-                        modalContent='Caption'
-                        modalButtonContent='20'
-                        onNextModal={handleNextModal}
-                        onPrevModal={handlePrevModal}
-                        setCurrentModal={setCurrentModal}
-                    />
-                </Box>
-            </OpenFade>
-        </>
-        
-    )
-}
+  useEffect(() => {
+    const loadNotionData = async () => {
+      try {
+        setIsLoading(true);
+        const data = await fetchModalContents();
+        // Atelier1用のデータをフィルタリング（ID 13-20）
+        const atelier1Data = data.filter(content => 
+          content.id >= 13 && content.id <= 20
+        );
+        setPopupContents(atelier1Data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to fetch modal contents');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    loadNotionData();
+  }, []);
 
-export default Atelier1
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  return (
+    <>
+      <OpenFade shouldFade={state}>
+        <Box sx={{ width: '100vw', height: '100vh' }}>
+          <Overlay isOpen={currentModal > 0} />
+          <Atelier1Map />
+          {popupContents.map((content) => (
+            <Popup
+              key={content.id}
+              id={content.id}
+              viewportSize={viewportSize}
+              buttonPosition={content.buttonPosition}
+              isOpen={content.id === currentModal}
+              modalImage={content.modalImage || Morimoto}
+              modalTitle={content.modalTitle}
+              name={`${content.name} ${content.grade}`}
+              modalContent={content.modalContent}
+              contentUrl={content.contentUrl} 
+              modalButtonContent={content.id.toString()}
+              onNextModal={handleNextModal}
+              onPrevModal={handlePrevModal}
+              setCurrentModal={setCurrentModal}
+            />
+          ))}
+        </Box>
+      </OpenFade>
+    </>
+  );
+};
+
+export default Atelier1;
