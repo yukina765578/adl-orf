@@ -107,15 +107,6 @@ const Popup: React.FC<PopupProps> = ({
         marginBottom: 4
     }
 
-    const linkStyle = {
-        fontSize: '12px',
-        color: 'blue.500',
-        textDecoration: 'underline',
-        sx: {
-            wordBreak: 'break-all'
-        }
-    } as const;
-
     return(
         <>
             <Button onClick={handleOnOpen} sx={buttonStyle}>{modalButtonContent}</Button>

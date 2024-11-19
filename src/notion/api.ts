@@ -3,7 +3,6 @@ import { NotionModalContent, PopupContent, Grade } from './types';
 const getButtonPosition = (id: number) => {
   // Lounge用のボタン位置計算（ID: 1-12）
   if (id >= 1 && id <= 12) {
-      const baseHeight = 87.369;
       const heightIncrement = 18;
       const isLeftSide = id >= 7;
       
