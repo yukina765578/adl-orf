@@ -107,14 +107,15 @@ const Popup: React.FC<PopupProps> = ({
         marginBottom: 4
     }
 
-    const linkStyle = {
-        fontSize: '12px',
-        color: 'blue.500',
-        textDecoration: 'underline',
-        sx: {
-            wordBreak: 'break-all'
-        }
-    } as const;
+    // eslint error never used
+    //const linkStyle = {
+    //    fontSize: '12px',
+    //    color: 'blue.500',
+    //    textDecoration: 'underline',
+    //    sx: {
+    //        wordBreak: 'break-all'
+    //    }
+    //} as const;
 
     return(
         <>
