@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from'react';
 import {Box, Image, Fade } from '@chakra-ui/react'
-import Floor1 from '../../image/Home/1f.png'
-import Floor2 from '../../image/Home/2f.png'
+import Floor1 from 'image/1f.png'
+import Floor2 from 'image/2f.png'
 import NavigationButton from '../../global/components/NavigationButton';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
