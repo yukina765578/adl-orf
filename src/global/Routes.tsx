@@ -23,20 +23,20 @@ const AppRoutes: React.FC<appRoutesProps> = ({headerHeight}) => {
 
     useEffect(() => {
         if (currentModal <= 12 && currentModal > 0) {
-            navigate('/lounge', { state:{shouldFade: true}});
+            navigate('/adl-orf/lounge', { state:{shouldFade: true}});
         } else if (currentModal > 12 && currentModal <= 20) {
-            navigate('/atelier1', { state:{shouldFade: true}});
+            navigate('/adl-orf/atelier1', { state:{shouldFade: true}});
         } else if(currentModal > 20) {
-            navigate('/atelier2', { state:{shouldFade: true}})
+            navigate('/adl-orf/atelier2', { state:{shouldFade: true}})
         }
     }, [currentModal, navigate]);
 
     return(
         <Routes>
-            <Route path='/' element={<Home headerHeight={headerHeight}/>} />
-            <Route path='/lounge' element={<Lounge {...{currentModal, setCurrentModal, handleNextModal, handlePrevModal, headerHeight}} />} />
-            <Route path='/atelier1' element={<Atelier1 {...{currentModal, setCurrentModal, handleNextModal, handlePrevModal, headerHeight}} />} />
-            <Route path='/atelier2' element={<Atelier2 {...{currentModal, setCurrentModal, handleNextModal, handlePrevModal, headerHeight}} />} />
+            <Route path='/adl-orf' element={<Home headerHeight={headerHeight}/>} />
+            <Route path='/adl-orf/lounge' element={<Lounge {...{currentModal, setCurrentModal, handleNextModal, handlePrevModal, headerHeight}} />} />
+            <Route path='/adl-orf/atelier1' element={<Atelier1 {...{currentModal, setCurrentModal, handleNextModal, handlePrevModal, headerHeight}} />} />
+            <Route path='/adl-orf/atelier2' element={<Atelier2 {...{currentModal, setCurrentModal, handleNextModal, handlePrevModal, headerHeight}} />} />
         </Routes>
     );
 }

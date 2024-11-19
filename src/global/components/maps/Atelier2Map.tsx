@@ -1,5 +1,5 @@
 import { Box, Image } from '@chakra-ui/react';
-import Map from '../../../image/Atelier2/map.png';
+import Map from 'image/atelier2.png';
 
 const Atelier2Map = () => {
     const mapBox = {

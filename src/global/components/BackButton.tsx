@@ -10,9 +10,9 @@ const BackButton: React.FC<backButtonProps> = ({headerHeight}) => {
     const navigate = useNavigate();
     const location  = useLocation();
     const handleOnClick = () => {
-        navigate('/')
+        navigate('/adl-orf')
     }
-    if (location.pathname !== '/') {
+    if (location.pathname !== '/adl-orf') {
         return (
             <IconButton
                 onClick={handleOnClick}
