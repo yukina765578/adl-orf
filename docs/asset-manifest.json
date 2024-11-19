@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/adl-orf/static/css/main.e6c13ad2.css",
-    "main.js": "/adl-orf/static/js/main.08cbb32f.js",
+    "main.js": "/adl-orf/static/js/main.175be70a.js",
     "static/js/787.04f80d0c.chunk.js": "/adl-orf/static/js/787.04f80d0c.chunk.js",
     "static/media/morimoto.png": "/adl-orf/static/media/morimoto.3350d10847b1abe1941a.png",
     "static/media/atelier2.png": "/adl-orf/static/media/atelier2.b950841f11d4b0f90eb5.png",
@@ -13,11 +13,11 @@
     "static/media/logo.png": "/adl-orf/static/media/logo.feecbfcc326ffdf64e05.png",
     "index.html": "/adl-orf/index.html",
     "main.e6c13ad2.css.map": "/adl-orf/static/css/main.e6c13ad2.css.map",
-    "main.08cbb32f.js.map": "/adl-orf/static/js/main.08cbb32f.js.map",
+    "main.175be70a.js.map": "/adl-orf/static/js/main.175be70a.js.map",
     "787.04f80d0c.chunk.js.map": "/adl-orf/static/js/787.04f80d0c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.08cbb32f.js"
+    "static/js/main.175be70a.js"
   ]
 }

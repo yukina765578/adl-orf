@@ -34,7 +34,7 @@ function App() {
       '/image/Atelier1/map.png',
       '/image/Atelier2/map.png',
       '/image/Lounge/mpa.png',
-      'image/ModalImage/morimoto.png'
+      '/image/ModalImage/morimoto.png'
     ];
 
     // Preload images

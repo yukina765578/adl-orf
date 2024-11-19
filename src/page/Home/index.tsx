@@ -89,15 +89,15 @@ const Home: React.FC<homeProp> = ({headerHeight}) => {
     }, [headerHeight]);
 
     const handleOnClickLounge = () => {
-        navigate('/lounge');
+        navigate('/adl-orf/lounge');
     };
 
     const handleOnClickAtelier1 = () => {
-        navigate('/atelier1');
+        navigate('/adl-orf/atelier1');
     }
 
     const handleOnClickAtelier2 = () => {
-        navigate('/atelier2');
+        navigate('/adl-orf/atelier2');
     }
 
     return(
