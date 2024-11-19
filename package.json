@@ -29,7 +29,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build:functions": "tsc --project tsconfig.functions.json",
+    "build:functions": "node_modules/.bin/tsc --project tsconfig.functions.json",
     "build": "react-scripts build && npm run build:functions",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -55,6 +55,6 @@
   "devDependencies": {
     "@types/aws-lambda": "^8.10.145",
     "@types/node": "^22.9.0",
-    "typescript": "~5.6.3"
+    "typescript": "^5.6.3"
   }
 }
