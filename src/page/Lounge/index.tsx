@@ -91,6 +91,7 @@ const Lounge: React.FC<Props> = ({
                             modalTitle={content.modalTitle}
                             name={`${content.name} ${content.grade}`}
                             modalContent={content.modalContent}
+                            contentUrl={content.contentUrl}
                             modalButtonContent={content.id.toString().padStart(2, '0')}
                             onNextModal={handleNextModal}
                             onPrevModal={handlePrevModal}

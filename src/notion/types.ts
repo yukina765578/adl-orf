@@ -1,42 +1,45 @@
-// 使用可能なグレードの定義
-export type Grade = 'B1' | 'B2' | 'B3' | 'B4' | 'M1' | 'M2';
-
 export interface NotionModalContent {
   properties: {
-    id?: {
+    配置番号?: {
       number: number;
     };
-    title?: {
+    展示名?: {
       title: Array<{ plain_text: string }>;
     };
-    name?: {
+    展示者?: {
       rich_text: Array<{ plain_text: string }>;
     };
-    modalContent?: {
+    展示概要?: {
       rich_text: Array<{ plain_text: string }>;
     };
-    grade?: {
+    学年?: {
       select: {
-        name: Grade;  // セレクト型に変更
+        name: Grade;
       };
     };
-    modalImage?: {
+    展示表紙?: {
       files: Array<{
         file?: { url: string };
         external?: { url: string };
         name: string;
       }>;
     };
+    展示内容リンク?: {
+      url: string; 
+    };
   };
 }
+
+export type Grade = 'B1' | 'B2' | 'B3' | 'B4' | 'M1' | 'M2';
 
 export interface PopupContent {
   id: number;
   modalTitle: string;
   name: string;
   modalContent: string;
-  grade: Grade;  // 型を制限
+  grade: Grade;
   modalImage: string;
+  contentUrl?: string; 
   buttonPosition: {
     width: number;
     height: number;

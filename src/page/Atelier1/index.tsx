@@ -51,7 +51,11 @@ const Atelier1: React.FC<Props> = ({
       try {
         setIsLoading(true);
         const data = await fetchModalContents();
-        setPopupContents(data);
+        // Atelier1用のデータをフィルタリング（ID 13-20）
+        const atelier1Data = data.filter(content => 
+          content.id >= 13 && content.id <= 20
+        );
+        setPopupContents(atelier1Data);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch modal contents');
       } finally {
@@ -87,6 +91,7 @@ const Atelier1: React.FC<Props> = ({
               modalTitle={content.modalTitle}
               name={`${content.name} ${content.grade}`}
               modalContent={content.modalContent}
+              contentUrl={content.contentUrl} 
               modalButtonContent={content.id.toString()}
               onNextModal={handleNextModal}
               onPrevModal={handlePrevModal}

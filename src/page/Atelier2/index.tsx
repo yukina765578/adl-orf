@@ -91,6 +91,7 @@ const Atelier2: React.FC<Props> = ({
                             modalTitle={content.modalTitle}
                             name={`${content.name} ${content.grade}`}
                             modalContent={content.modalContent}
+                            contentUrl={content.contentUrl}
                             modalButtonContent={content.id.toString()}
                             onNextModal={handleNextModal}
                             onPrevModal={handlePrevModal}

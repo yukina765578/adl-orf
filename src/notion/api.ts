@@ -83,7 +83,7 @@ export const fetchModalContents = async (): Promise<PopupContent[]> => {
         body: JSON.stringify({
           sorts: [
             {
-              property: 'id',
+              property: '配置番号',
               direction: 'ascending'
             }
           ]
@@ -96,38 +96,40 @@ export const fetchModalContents = async (): Promise<PopupContent[]> => {
     }
 
     const data = await response.json();
+    console.log('Notion API Response:', data);
 
     return data.results.map((result: NotionModalContent) => {
-      const id = result.properties?.id?.number;
-      const title = result.properties?.title?.title?.[0]?.plain_text;
-      const name = result.properties?.name?.rich_text?.[0]?.plain_text;
-      const content = result.properties?.modalContent?.rich_text?.[0]?.plain_text;
-      const grade = result.properties?.grade?.select?.name;
+      const id = result.properties?.配置番号?.number;
+      const title = result.properties?.展示名?.title?.[0]?.plain_text;
+      const name = result.properties?.展示者?.rich_text?.[0]?.plain_text;
+      const content = result.properties?.展示概要?.rich_text?.[0]?.plain_text;
+      const grade = result.properties?.学年?.select?.name;
+      const contentUrl = result.properties?.展示内容リンク?.url;
       
-      const imageFile = result.properties?.modalImage?.files?.[0];
+      const imageFile = result.properties?.展示表紙?.files?.[0];
       const imageUrl = imageFile?.file?.url || imageFile?.external?.url || '';
 
       if (!id) {
-        throw new Error('Missing required ID property');
+        throw new Error('配置番号が設定されていません');
       }
 
-      // gradeの型チェック
       const validGrade = (grade?: string): grade is Grade => {
         const validGrades: Grade[] = ['B1', 'B2', 'B3', 'B4', 'M1', 'M2'];
         return !!grade && validGrades.includes(grade as Grade);
       };
 
       if (!validGrade(grade)) {
-        console.warn(`Invalid grade value for ID ${id}: ${grade}`);
+        console.warn(`ID ${id} の学年が無効です: ${grade}`);
       }
 
       return {
         id,
-        modalTitle: title || 'Default Title',
-        name: name || 'Default Name',
-        modalContent: content || 'Default Content',
-        grade: validGrade(grade) ? grade : 'B1', // デフォルト値としてB1を設定
+        modalTitle: title || 'タイトルなし',
+        name: name || '名前なし',
+        modalContent: content || '内容なし',
+        grade: validGrade(grade) ? grade : 'B1',
         modalImage: imageUrl,
+        contentUrl,
         buttonPosition: getButtonPosition(id),
       };
     });
