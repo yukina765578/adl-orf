@@ -15,7 +15,7 @@ const handler: Handler = async (event) => {
     const response = await fetch(notionApiUrl, {
       method: httpMethod,
       headers,
-      body: httpMethod === 'POST' ? body : undefined,
+      body: httpMethod === 'POST' && body ? body.toString() : undefined,
     });
 
     const data = await response.json();
@@ -26,7 +26,7 @@ const handler: Handler = async (event) => {
   } catch (error) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: error.message }),
+      body: JSON.stringify({ error: (error as Error).message }),
     };
   }
 };

@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",               // Supports private fields
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "outDir": "./dist/functions",     // Compiled files go here
+    "rootDir": "./netlify/functions"  // Source files location
+  },
+  "include": ["netlify/functions/**/*.ts"],
+  "exclude": ["node_modules"]
+}
