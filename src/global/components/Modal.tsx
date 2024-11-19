@@ -97,7 +97,7 @@ const Popup: React.FC<PopupProps> = ({
         fontSize: 12,
         fontWeight: 500,
         letterSpacing: 0.8
-    }
+    } as const;
 
     const linkTitleStyle = {
         fontSize: 12,
@@ -133,7 +133,10 @@ const Popup: React.FC<PopupProps> = ({
                         <Box>
                             <Heading style={titleStyle} fontWeight={600}>{modalTitle}</Heading>
                             <Text style={nameStyle} fontWeight={600}>{name}</Text>
-                            <Text style={textStyle}>
+                            <Text 
+                                style={textStyle}
+                                sx={{ whiteSpace: 'pre-wrap' }} // sxプロパティを使用して改行を保持
+                            >
                                 {modalContent}
                             </Text>
                             {contentUrl && (
