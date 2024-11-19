@@ -1,14 +1,48 @@
-import { NotionModalContent, PopupContent } from './types';
+import { NotionModalContent, PopupContent, Grade } from './types';
 
 const getButtonPosition = (id: number) => {
+  // Lounge用のボタン位置計算（ID: 1-12）
+  if (id >= 1 && id <= 12) {
+      const baseHeight = 87.369;
+      const heightIncrement = 18;
+      const isLeftSide = id >= 7;
+      
+      let height;
+      if (id <= 6) {
+          height = 177.469 - (heightIncrement * (id - 1));
+      } else {
+          height = 87.369 + (heightIncrement * (id - 7));
+      }
+
+      return {
+          width: isLeftSide ? -9.18 : 9.18,
+          height
+      };
+  }
+  
+  // Atelier2用のボタン位置計算（ID: 21-24）
+  if (id >= 21 && id <= 24) {
+      const heights = {
+          21: 168.959,
+          22: 144.569,
+          23: 120.074,
+          24: 95.809
+      };
+      return {
+          width: 0,
+          height: heights[id as keyof typeof heights] || 0
+      };
+  }
+
+  // Atelier1用のボタン位置計算（ID: 13-20）
   const isLeftSide = id >= 17;
   const baseHeight = 105.358;
   const heightIncrement = 18;
   const heightOffset = Math.floor((id - (isLeftSide ? 17 : 13)) * heightIncrement);
   
   return {
-    width: isLeftSide ? -9.18 : 9.18,
-    height: baseHeight + heightOffset,
+      width: isLeftSide ? -9.18 : 9.18,
+      height: baseHeight + heightOffset,
   };
 };
 
@@ -37,59 +71,62 @@ export const fetchModalContents = async (): Promise<PopupContent[]> => {
   try {
     const { apiKey, databaseId } = validateEnvironmentVars();
 
-    const requestUrl = `/api/notion/databases/${databaseId}/query`;
-    console.log('Requesting:', requestUrl);
-
-    const response = await fetch(requestUrl, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Notion-Version': '2022-06-28',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        sorts: [
-          {
-            property: 'title',
-            direction: 'ascending'
-          }
-        ]
-      })
-    });
-
-    const responseText = await response.text();
-    console.log('Raw Response:', responseText);
+    const response = await fetch(
+      `/api/notion/databases/${databaseId}/query`,
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Notion-Version': '2022-06-28',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          sorts: [
+            {
+              property: 'id',
+              direction: 'ascending'
+            }
+          ]
+        })
+      }
+    );
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}, body: ${responseText}`);
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data = JSON.parse(responseText);
-    console.log('Parsed Response:', data);
-
-    if (!Array.isArray(data.results)) {
-      throw new Error('Unexpected response format: results is not an array');
-    }
+    const data = await response.json();
 
     return data.results.map((result: NotionModalContent) => {
+      const id = result.properties?.id?.number;
       const title = result.properties?.title?.title?.[0]?.plain_text;
       const name = result.properties?.name?.rich_text?.[0]?.plain_text;
       const content = result.properties?.modalContent?.rich_text?.[0]?.plain_text;
+      const grade = result.properties?.grade?.select?.name;
       
       const imageFile = result.properties?.modalImage?.files?.[0];
       const imageUrl = imageFile?.file?.url || imageFile?.external?.url || '';
 
-      if (!title) {
-        throw new Error(`Missing required title property in result: ${JSON.stringify(result)}`);
+      if (!id) {
+        throw new Error('Missing required ID property');
       }
 
-      const id = parseInt(title);
+      // gradeの型チェック
+      const validGrade = (grade?: string): grade is Grade => {
+        const validGrades: Grade[] = ['B1', 'B2', 'B3', 'B4', 'M1', 'M2'];
+        return !!grade && validGrades.includes(grade as Grade);
+      };
+
+      if (!validGrade(grade)) {
+        console.warn(`Invalid grade value for ID ${id}: ${grade}`);
+      }
 
       return {
         id,
-        modalTitle: title,
+        modalTitle: title || 'Default Title',
         name: name || 'Default Name',
         modalContent: content || 'Default Content',
+        grade: validGrade(grade) ? grade : 'B1', // デフォルト値としてB1を設定
         modalImage: imageUrl,
         buttonPosition: getButtonPosition(id),
       };
@@ -97,8 +134,7 @@ export const fetchModalContents = async (): Promise<PopupContent[]> => {
   } catch (error) {
     console.error('Error fetching Notion data:', {
       error,
-      message: error instanceof Error ? error.message : 'Unknown error',
-      stack: error instanceof Error ? error.stack : undefined
+      databaseId: process.env.REACT_APP_NOTION_DATABASE_ID,
     });
     throw error;
   }

@@ -83,9 +83,9 @@ const Atelier1: React.FC<Props> = ({
               viewportSize={viewportSize}
               buttonPosition={content.buttonPosition}
               isOpen={content.id === currentModal}
-              modalImage={content.modalImage || Morimoto} // NotionのイメージURLを使用、なければフォールバック
+              modalImage={content.modalImage || Morimoto}
               modalTitle={content.modalTitle}
-              name={content.name}
+              name={`${content.name} ${content.grade}`}
               modalContent={content.modalContent}
               modalButtonContent={content.id.toString()}
               onNextModal={handleNextModal}
