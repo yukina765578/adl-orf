@@ -53,7 +53,7 @@ const Lounge: React.FC<Props> = ({
                 const data = await fetchModalContents();
                 // Lounge用のデータをフィルタリング（ID 1-12）
                 const loungeData = data.filter(content => 
-                    content.id >= 1 && content.id <= 12
+                    content.id >= 1 && content.id <= 10
                 );
                 setPopupContents(loungeData);
             } catch (err) {

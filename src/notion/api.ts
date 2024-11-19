@@ -4,17 +4,17 @@ import { NotionModalContent, PopupContent } from './types';
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const getButtonPosition = (id: number) => {
-  // Lounge用のボタン位置計算（ID: 1-12）
-  if (id >= 1 && id <= 12) {
+  // Lounge用のボタン位置計算（ID: 1-10）
+  if (id >= 1 && id <= 10) {
       // const baseHeight = 87.369; eslint error never used
       const heightIncrement = 18;
-      const isLeftSide = id >= 7;
+      const isLeftSide = id >= 6;
       
       let height;
-      if (id <= 6) {
-          height = 177.469 - (heightIncrement * (id - 1));
+      if (id <= 5) {
+          height = 169 - (heightIncrement * (id - 1));
       } else {
-          height = 87.369 + (heightIncrement * (id - 7));
+          height = 97 + (heightIncrement * (id - 6));
       }
 
       return {
@@ -23,13 +23,13 @@ const getButtonPosition = (id: number) => {
       };
   }
   
-  // Atelier2用のボタン位置計算（ID: 21-24）
-  if (id >= 21 && id <= 24) {
+  // Atelier2用のボタン位置計算（ID: 11-14）
+  if (id >= 11 && id <= 14) {
       const heights = {
-          21: 168.959,
-          22: 144.569,
-          23: 120.074,
-          24: 95.809
+          11: 168.959,
+          12: 144.569,
+          13: 120.074,
+          14: 95.809
       };
       return {
           width: 0,
@@ -37,8 +37,8 @@ const getButtonPosition = (id: number) => {
       };
   }
 
-  // Atelier1用のボタン位置計算（ID: 13-20）
-  const isLeftSide = id >= 17;
+  // Atelier1用のボタン位置計算（ID: 15-）
+  const isLeftSide = id >= 15;
   const baseHeight = 105.358;
   const heightIncrement = 18;
   const heightOffset = Math.floor((id - (isLeftSide ? 17 : 13)) * heightIncrement);

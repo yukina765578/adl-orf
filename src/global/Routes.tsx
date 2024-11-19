@@ -22,12 +22,12 @@ const AppRoutes: React.FC<appRoutesProps> = ({headerHeight}) => {
     }
 
     useEffect(() => {
-        if (currentModal <= 12 && currentModal > 0) {
+        if (currentModal <= 10 && currentModal > 0) {
             navigate('/adl-orf/lounge', { state:{shouldFade: true}});
-        } else if (currentModal > 12 && currentModal <= 20) {
-            navigate('/adl-orf/atelier1', { state:{shouldFade: true}});
-        } else if(currentModal > 20) {
-            navigate('/adl-orf/atelier2', { state:{shouldFade: true}})
+        } else if (currentModal > 10 && currentModal <= 14) {
+            navigate('/adl-orf/atelier2', { state:{shouldFade: true}});
+        } else if(currentModal > 14) {
+            navigate('/adl-orf/atelier1', { state:{shouldFade: true}})
         }
     }, [currentModal, navigate]);
 

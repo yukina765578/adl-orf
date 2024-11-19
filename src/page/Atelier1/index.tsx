@@ -53,7 +53,7 @@ const Atelier1: React.FC<Props> = ({
         const data = await fetchModalContents();
         // Atelier1用のデータをフィルタリング（ID 13-20）
         const atelier1Data = data.filter(content => 
-          content.id >= 13 && content.id <= 20
+          content.id >= 15 && content.id <= 25
         );
         setPopupContents(atelier1Data);
       } catch (err) {

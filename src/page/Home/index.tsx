@@ -109,8 +109,8 @@ const Home: React.FC<homeProp> = ({headerHeight}) => {
                         style={imageStyle}
                         objectFit={'contain'}
                     />
-                    <NavigationButton imagePosition={image1Position} imageSize={image1Size} buttonPosition={{width: 190.2, height: 197.936 }} headerHeight={headerHeight} handleOnClick={handleOnClickLounge}/>
-                    <NavigationButton imagePosition={image1Position} imageSize={image1Size} buttonPosition={{width: 471, height: 127 }} headerHeight={headerHeight} handleOnClick={handleOnClickAtelier1} />
+                    <NavigationButton imagePosition={image1Position} imageSize={image1Size} buttonPosition={{width: 167.928, height: 349.621 }} headerHeight={headerHeight} handleOnClick={handleOnClickLounge}/>
+                    <NavigationButton imagePosition={image1Position} imageSize={image1Size} buttonPosition={{width: 97.5, height: 84.778 }} headerHeight={headerHeight} handleOnClick={handleOnClickAtelier1} />
                 </Box>
                 <Box sx={floorBox} ref={floor2Ref}>
                     <Image
@@ -118,7 +118,7 @@ const Home: React.FC<homeProp> = ({headerHeight}) => {
                         style={imageStyle}
                         objectFit={'contain'}
                     />
-                    <NavigationButton imagePosition={image2Position} imageSize={image2Size} buttonPosition={{width: 222.5, height: 102 }} headerHeight={headerHeight} handleOnClick={handleOnClickAtelier2} />
+                    <NavigationButton imagePosition={image2Position} imageSize={image2Size} buttonPosition={{width: 81.061, height: 312.5 }} headerHeight={headerHeight} handleOnClick={handleOnClickAtelier2} />
                 </Box>
             </Box>    
         </Fade>
