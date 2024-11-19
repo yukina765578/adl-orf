@@ -6,6 +6,7 @@ import AppRoutes from './global/Routes';
 import Navigation from './global/components/Navigation';
 import Header from './global/components/Header';
 import BackButton from './global/components/BackButton';
+import { PopupContent } from './notion/types';
 
 const customTheme = extendTheme({
   fonts: {
@@ -25,13 +26,14 @@ const customTheme = extendTheme({
 
 function App() {
   const [headerHeight, setHeaderheight] = useState<number>(0)
+  const [data, setData] = useState<PopupContent[]>([])
 
   return (
     <Router>
       <ChakraProvider theme={customTheme}>
         <Box>
-          <Loading />
-          <AppRoutes headerHeight={headerHeight}/>
+          <Loading setData={setData}/>
+          <AppRoutes headerHeight={headerHeight} data={data}/>
           <Header setHeaderHeight={setHeaderheight}/>
           <BackButton headerHeight={headerHeight}/>
           <Navigation />

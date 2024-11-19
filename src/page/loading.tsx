@@ -1,8 +1,13 @@
 import { useState, useEffect} from 'react'
 import { Box, Image } from '@chakra-ui/react'
 import Logo from 'image/logo.png'
+import { fetchModalContents } from 'notion/api';
 
-const Loading = () => {
+interface LoadingProps {
+  setData: React.Dispatch<React.SetStateAction<any>>;
+}
+
+const Loading: React.FC<LoadingProps> = ({ setData }) => {
     const [loading, setLoading] = useState<boolean>(true);
 
     const loadingBox = {
@@ -19,8 +24,19 @@ const Loading = () => {
         pointerEvents: loading ? 'auto' : 'none'
     }
     useEffect(() => {
-        setTimeout(() => setLoading(false), 1500);
-    }, [])
+      console.log('loading')
+      const loadNotionData = async () => {
+        try{
+          const data = await fetchModalContents();
+          setData(data);
+        } catch (err) {
+          console.error(err);
+        } finally {
+          setLoading(false);
+        }
+      }
+      loadNotionData();
+    }, [setData])
     return(
         <Box sx={loadingBox}>
             <Image boxSize="160px" src={Logo} />

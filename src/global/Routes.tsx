@@ -5,12 +5,14 @@ import Home from '../page/Home';
 import Lounge from '../page/Lounge';
 import Atelier1 from '../page/Atelier1';
 import Atelier2 from '../page/Atelier2';
+import { PopupContent } from '../notion/types';
 
 interface appRoutesProps {
-    headerHeight: number
+    headerHeight: number;
+    data: PopupContent[];
 }
 
-const AppRoutes: React.FC<appRoutesProps> = ({headerHeight}) => {
+const AppRoutes: React.FC<appRoutesProps> = ({headerHeight, data}) => {
     console.log(headerHeight)
     const [currentModal, setCurrentModal] = useState<number>(0);
     const navigate = useNavigate()
@@ -34,9 +36,9 @@ const AppRoutes: React.FC<appRoutesProps> = ({headerHeight}) => {
     return(
         <Routes>
             <Route path='/adl-orf' element={<Home headerHeight={headerHeight}/>} />
-            <Route path='/adl-orf/lounge' element={<Lounge {...{currentModal, setCurrentModal, handleNextModal, handlePrevModal, headerHeight}} />} />
-            <Route path='/adl-orf/atelier1' element={<Atelier1 {...{currentModal, setCurrentModal, handleNextModal, handlePrevModal, headerHeight}} />} />
-            <Route path='/adl-orf/atelier2' element={<Atelier2 {...{currentModal, setCurrentModal, handleNextModal, handlePrevModal, headerHeight}} />} />
+            <Route path='/adl-orf/lounge' element={<Lounge {...{currentModal, setCurrentModal, handleNextModal, handlePrevModal, headerHeight, data}} />} />
+            <Route path='/adl-orf/atelier1' element={<Atelier1 {...{currentModal, setCurrentModal, handleNextModal, handlePrevModal, headerHeight, data}} />} />
+            <Route path='/adl-orf/atelier2' element={<Atelier2 {...{currentModal, setCurrentModal, handleNextModal, handlePrevModal, headerHeight, data}} />} />
         </Routes>
     );
 }

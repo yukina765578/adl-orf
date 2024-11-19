@@ -14,21 +14,21 @@ interface Props {
     setCurrentModal: React.Dispatch<React.SetStateAction<number>>;
     handleNextModal: () => void;
     handlePrevModal: () => void;
+    data: PopupContent[];
 }
 
 const Atelier2: React.FC<Props> = ({ 
     currentModal, 
     setCurrentModal, 
     handleNextModal, 
-    handlePrevModal 
+    handlePrevModal,
+    data
 }) => {
     const [viewportSize, setViewportSize] = useState({
         width: window.innerWidth,
         height: window.innerHeight,
     });
     const [popupContents, setPopupContents] = useState<PopupContent[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
 
     const location = useLocation();
     const { state } = location;
@@ -47,32 +47,9 @@ const Atelier2: React.FC<Props> = ({
     }, []);
 
     useEffect(() => {
-        const loadNotionData = async () => {
-            try {
-                setIsLoading(true);
-                const data = await fetchModalContents();
-                // Atelier2用のデータをフィルタリング（ID 21-24）
-                const atelier2Data = data.filter(content => 
-                    content.id >= 11 && content.id <= 14
-                );
-                setPopupContents(atelier2Data);
-            } catch (err) {
-                setError(err instanceof Error ? err.message : 'Failed to fetch modal contents');
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        
-        loadNotionData();
-    }, []);
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
+        const atelier2Data = data.filter(content => 11 <= content.id && content.id <= 14);
+        setPopupContents(atelier2Data);
+    }, [data]);
 
     return (
         <>
