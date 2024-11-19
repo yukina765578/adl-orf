@@ -7,7 +7,7 @@ import Morimoto from '../../image/ModalImage/morimoto.png';
 import LoungeMap from '../../global/components/maps/LoungeMap';
 import OpenFade from '../../global/components/OpenFade';
 import { PopupContent } from '../../notion/types';
-import { fetchModalContents } from '../../notion/database';
+import { fetchModalContents } from '../../notion/api';
 
 interface Props {
     currentModal: number;
