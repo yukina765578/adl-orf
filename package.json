@@ -11,6 +11,7 @@
     "@fontsource/crimson-pro": "^5.0.15",
     "@fontsource/noto-serif-jp": "^5.0.7",
     "@fontsource/source-sans-pro": "^5.0.8",
+    "@netlify/functions": "^2.8.2",
     "@notionhq/client": "^2.2.15",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -30,7 +31,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build:functions": "node_modules/.bin/tsc --project tsconfig.functions.json",
+    "build": "react-scripts build && npm run build:functions",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "rm": "rm -rf docs",
@@ -57,6 +59,7 @@
     ]
   },
   "devDependencies": {
+    "@types/aws-lambda": "^8.10.145",
     "@types/node": "^22.9.0"
   }
 }
