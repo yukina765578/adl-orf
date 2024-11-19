@@ -2,6 +2,7 @@
   "name": "adl-orf",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://yukina765578.github.io/adl-orf/",
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/react": "^2.8.2",
@@ -32,7 +33,11 @@
     "build:functions": "node_modules/.bin/tsc --project tsconfig.functions.json",
     "build": "react-scripts build && npm run build:functions",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "rm": "rm -rf docs",
+    "mv": "mv build docs",
+    "git": "git add . && git commit && git push origin master",
+    "deploy": "npm run rm && npm run build && npm run mv && npm run git"
   },
   "eslintConfig": {
     "extends": [
