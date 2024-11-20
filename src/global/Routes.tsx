@@ -17,10 +17,10 @@ const AppRoutes: React.FC<appRoutesProps> = ({headerHeight, data}) => {
     const [currentModal, setCurrentModal] = useState<number>(0);
     const navigate = useNavigate()
     const handleNextModal = () => {
-        currentModal === 24 ? setCurrentModal(1) : setCurrentModal(currentModal + 1)
+        currentModal === 19 ? setCurrentModal(1) : setCurrentModal(currentModal + 1)
     }
     const handlePrevModal = () => {
-        currentModal === 1 ? setCurrentModal(24) : setCurrentModal(currentModal - 1)
+        currentModal === 1 ? setCurrentModal(19) : setCurrentModal(currentModal - 1)
     }
 
     useEffect(() => {

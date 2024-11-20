@@ -26,10 +26,10 @@ const getButtonPosition = (id: number) => {
   // Atelier2用のボタン位置計算（ID: 11-14）
   if (id >= 11 && id <= 14) {
       const heights = {
-          11: 168.959,
-          12: 144.569,
-          13: 120.074,
-          14: 95.809
+          14: 168.959,
+          13: 144.569,
+          12: 120.074,
+          11: 95.809
       };
       return {
           width: 0,
@@ -38,15 +38,16 @@ const getButtonPosition = (id: number) => {
   }
 
   // Atelier1用のボタン位置計算（ID: 15-）
-  const isLeftSide = id >= 15;
-  const baseHeight = 105.358;
-  const heightIncrement = 18;
-  const heightOffset = Math.floor((id - (isLeftSide ? 17 : 13)) * heightIncrement);
-  
-  return {
-      width: isLeftSide ? -9.18 : 9.18,
-      height: baseHeight + heightOffset,
+  const dimensions: Record<number, { width: number; height: number }>  = {
+    15: { width: 27.5, height: 130 },
+    16: { width: 64, height: 99 },
+    17: { width: 0.5, height: 79.5 },
+    18: { width: -26.3, height: 143 },
+    19: { width: -12.5, height: 212 }
   };
+  if (id in dimensions) {
+    return dimensions[id];
+  }
 };
 
 export const fetchModalContents = async (): Promise<PopupContent[]> => {
