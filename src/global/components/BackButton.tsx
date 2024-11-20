@@ -14,7 +14,7 @@ const BackButton: React.FC<backButtonProps> = ({headerHeight}) => {
       navigate('/adl-orf')
   }
 
-  if (location.pathname === '/adl-orf' || location.pathname === '/'){
+  if (location.pathname === '/adl-orf' || location.pathname === '/adl-orf/') {
     return null; // Don't render the BackButton when in the home route ('/')
   }
 

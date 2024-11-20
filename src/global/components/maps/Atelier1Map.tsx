@@ -18,8 +18,6 @@ const Atelier1Map = () => {
         opacity: 0.8
     }
     
-
-    
     return (
         <Box sx={mapBox}>
             <Image
