@@ -119,7 +119,7 @@ const Popup: React.FC<PopupProps> = ({
 
     return(
         <>
-            <Button onClick={handleOnOpen} sx={buttonStyle}>{modalButtonContent}</Button>
+            <Button onClick={handleOnOpen} sx={buttonStyle} variant='unstyled'>{modalButtonContent}</Button>
             <Modal isCentered isOpen={isOpen} onClose={handleOnClose} size='sm'>
                 <ModalContent height="75vh" maxHeight={699} minHeight={600} padding='40px' >
                     <Box overflowY='auto'>

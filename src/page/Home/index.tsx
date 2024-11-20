@@ -13,7 +13,7 @@ const Home: React.FC<homeProp> = ({headerHeight}) => {
     const navigate = useNavigate();
     
     const [viewportSize, setViewportSize] = useState({
-        width:window.innerWidth,
+        width: window.innerWidth,
         height: window.innerHeight,
     })
     const [image1Size, setImage1Size] = useState({
@@ -38,7 +38,7 @@ const Home: React.FC<homeProp> = ({headerHeight}) => {
     const contentBox = {
         position: 'absolute',
         top: `${headerHeight}px`,
-        width: '100vw',
+        width: '100%',
         height: contentHeight * 2,
         justifyContent: 'center',
         alignItems: 'center',
@@ -46,7 +46,7 @@ const Home: React.FC<homeProp> = ({headerHeight}) => {
         flexDirection: 'column'
     }
     const floorBox = {
-        width: '100vw',
+        width: '100%',
         height: contentHeight,
         overflow: 'hidden',
         display: 'flex',
@@ -60,18 +60,6 @@ const Home: React.FC<homeProp> = ({headerHeight}) => {
         transform: 'scale(1)',
         opacity: 0.7,
     }
-    useEffect(() => {
-        const handleResize = () => {
-            setViewportSize({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            });
-        };
-        window.addEventListener('resize', handleResize);
-        return()=>{
-            window.removeEventListener('resize', handleResize)
-        }
-    })
     useEffect(() => {
         if (floor1Ref.current) {
           const rect = floor1Ref.current.getBoundingClientRect();

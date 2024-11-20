@@ -1,13 +1,13 @@
 import { IconButton, Image, Box } from "@chakra-ui/react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { NavigationLeft } from "./NavigationLeft";
-import Logo from 'image/logo.png'
+import adlLogo from 'image/logo.png'
 
-interface backButtonProps {
+interface logoHeaderProps {
     headerHeight: number
 }
 
-const BackButton: React.FC<backButtonProps> = ({headerHeight}) => {
+const LogoHeader: React.FC<logoHeaderProps> = ({headerHeight}) => {
   const navigate = useNavigate();
   const location  = useLocation();
   const handleOnClick = () => {
@@ -18,25 +18,27 @@ const BackButton: React.FC<backButtonProps> = ({headerHeight}) => {
     return null; // Don't render the BackButton when in the home route ('/')
   }
 
+  const logo = adlLogo
+
   return (
-    <IconButton
-      onClick={handleOnClick}
-      variant="unstyled"
-      aria-label='Back'
-      icon={<NavigationLeft />}
-      style={{
+      <Image
+        src={logo}
+        style={{
+          backgroundColor: 'black',
           display: 'flex',
+          border: '1px solid gray',
           alignItems: 'center',
           justifyContent: 'center',
           position: 'absolute',
-          left: "0px",
+          right: "0px",
           top: headerHeight,
-          zIndex: 10,
-          padding: '10px',
-      }}
-    />
+          marginRight: '10px',
+        }}
+        alt="Navigation Button"
+        boxSize="40px"
+        objectFit="cover"
+      />
   );
 }
 
-
-export default BackButton
+export default LogoHeader

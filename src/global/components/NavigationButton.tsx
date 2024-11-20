@@ -1,5 +1,6 @@
-import { Box, Button } from '@chakra-ui/react'
+import { Box, Button, Image } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
+import Logo from 'image/logo.png'
 
 interface NavigationButtonProps {
     imagePosition: {top: number, left: number},
@@ -47,16 +48,23 @@ const NavigationButton: React.FC<NavigationButtonProps> = ({imagePosition, image
         borderRadius: '50%'
     }
     return(
-        <Button style={buttonStyle} onClick={handleOnClick} backgroundColor="transparent" position="absolute">
-            <Box position="absolute" width={4} height={4} backgroundColor="black" />
-            <Box
-                position="absolute"
-                width={8}
-                height={8}
-                borderWidth={2}
-                borderColor="black"
-                backgroundColor="transparent"
-            />
+        <Button
+          style={buttonStyle}
+          onClick={handleOnClick}
+          backgroundColor="transparent"
+          position="absolute"
+          variant="unstyled"
+        >
+          <Image
+            src={Logo}
+            style={{
+              backgroundColor: 'black',
+              border: '1px solid gray',
+            }}
+            alt="Navigation Button"
+            boxSize="48px"
+            objectFit="cover"
+          />
         </Button>
     )
 }
