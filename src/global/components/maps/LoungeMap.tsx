@@ -18,8 +18,6 @@ const LoungeMap = () => {
         opacity: 0.8
     }
     
-
-    
     return (
         <Box sx={mapBox}>
             <Image

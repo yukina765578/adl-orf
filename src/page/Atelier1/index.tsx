@@ -25,27 +25,15 @@ const Atelier1: React.FC<Props> = ({
   handlePrevModal,
   data
 }) => {
-  const [viewportSize, setViewportSize] = useState({
+  const [popupContents, setPopupContents] = useState<PopupContent[]>([]);
+  
+  const viewportSize = {
     width: window.innerWidth,
     height: window.innerHeight,
-  });
-  const [popupContents, setPopupContents] = useState<PopupContent[]>([]);
+  }
   
   const location = useLocation();
   const { state } = location;
-
-  useEffect(() => {
-    const handleResize = () => {
-      setViewportSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    };
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   useEffect(() => {
     const atelier1Data = data.filter(content => 15 <= content.id && content.id <= 20);
@@ -55,7 +43,7 @@ const Atelier1: React.FC<Props> = ({
   return (
     <>
       <OpenFade shouldFade={state}>
-        <Box sx={{ width: '100vw', height: '100vh' }}>
+        <Box sx={{ width: '100%', height: '100%' }}>
           <Overlay isOpen={currentModal > 0} />
           <Atelier1Map />
           {popupContents.map((content) => (
