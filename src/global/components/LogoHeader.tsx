@@ -32,7 +32,6 @@ const LogoHeader: React.FC<logoHeaderProps> = ({headerHeight}) => {
           position: 'absolute',
           right: "0px",
           top: headerHeight,
-          zIndex: 10,
           marginRight: '10px',
         }}
         alt="Navigation Button"

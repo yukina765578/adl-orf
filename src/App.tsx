@@ -1,5 +1,6 @@
 import { BrowserRouter as Router } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { ChakraProvider, theme as chakraTheme, Box, extendTheme  } from '@chakra-ui/react';
 import Loading from './page/loading';
 import AppRoutes from './global/Routes';
@@ -25,6 +26,15 @@ const customTheme = extendTheme({
   },
 })
 
+function ScrollToTop() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    window.history.scrollRestoration = 'manual';
+  }, []);
+
+  return null;
+}
+
 function App() {
   const [headerHeight, setHeaderheight] = useState<number>(0)
   const [data, setData] = useState<PopupContent[]>([])
@@ -33,6 +43,7 @@ function App() {
     <Router>
       <ChakraProvider theme={customTheme}>
         <Box>
+          <ScrollToTop />
           <Loading setData={setData}/>
           <AppRoutes headerHeight={headerHeight} data={data}/>
           <Header setHeaderHeight={setHeaderheight}/>

@@ -16,10 +16,10 @@ const Navigation = () => {
         lineHeight: 1.5,
         fontSize: '16px',
         backgroundColor: 'rgba(256,256,256,0.9)',
-        paddingRight: 10,
-        paddingLeft: 5,
-        paddingTop: 5,
-        paddingBottom: 15,
+        marginRight: 10,
+        marginLeft: 5,
+        marginTop: 5,
+        marginBottom: 15,
     }
     if (location.pathname !== '/'){
         return(
