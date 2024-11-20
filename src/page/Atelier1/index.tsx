@@ -7,8 +7,6 @@ import Morimoto from '../../image/ModalImage/morimoto.png';
 import Atelier1Map from '../../global/components/maps/Atelier1Map';
 import OpenFade from '../../global/components/OpenFade';
 import { PopupContent } from '../../notion/types';
-import { fetchModalContents } from '../../notion/api';
-
 
 interface Props {
   currentModal: number;
@@ -43,7 +41,7 @@ const Atelier1: React.FC<Props> = ({
   return (
     <>
       <OpenFade shouldFade={state}>
-        <Box sx={{ width: '100%', height: '100%' }}>
+        <Box sx={{ width: viewportSize.width, height: viewportSize.height }}>
           <Overlay isOpen={currentModal > 0} />
           <Atelier1Map />
           {popupContents.map((content) => (

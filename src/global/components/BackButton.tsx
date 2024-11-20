@@ -1,7 +1,6 @@
-import { IconButton, Image, Box } from "@chakra-ui/react";
+import { IconButton } from "@chakra-ui/react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { NavigationLeft } from "./NavigationLeft";
-import Logo from 'image/logo.png'
 
 interface backButtonProps {
     headerHeight: number

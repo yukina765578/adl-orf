@@ -1,4 +1,4 @@
-import { Box, Button, Image } from '@chakra-ui/react'
+import { Button, Image } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import Logo from 'image/logo.png'
 

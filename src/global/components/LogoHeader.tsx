@@ -1,6 +1,5 @@
-import { IconButton, Image, Box } from "@chakra-ui/react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { NavigationLeft } from "./NavigationLeft";
+import { Image } from "@chakra-ui/react";
+import { useLocation } from "react-router-dom";
 import adlLogo from 'image/logo.png'
 
 interface logoHeaderProps {
@@ -8,11 +7,7 @@ interface logoHeaderProps {
 }
 
 const LogoHeader: React.FC<logoHeaderProps> = ({headerHeight}) => {
-  const navigate = useNavigate();
   const location  = useLocation();
-  const handleOnClick = () => {
-      navigate('/adl-orf')
-  }
 
   if (location.pathname === '/adl-orf' || location.pathname === '/adl-orf/') {
     return null; // Don't render the BackButton when in the home route ('/')
