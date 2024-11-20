@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/adl-orf/static/css/main.e6c13ad2.css",
+    "main.js": "/adl-orf/static/js/main.05e37397.js",
+    "static/js/453.32908e4b.chunk.js": "/adl-orf/static/js/453.32908e4b.chunk.js",
+    "static/media/morimoto.png": "/adl-orf/static/media/morimoto.3350d10847b1abe1941a.png",
+    "static/media/atelier2.png": "/adl-orf/static/media/atelier2.b950841f11d4b0f90eb5.png",
+    "static/media/2f.png": "/adl-orf/static/media/2f.8e192f816716fa6ff7f2.png",
+    "static/media/atelier1.png": "/adl-orf/static/media/atelier1.b45b53980799e11f19b5.png",
+    "static/media/lounge.png": "/adl-orf/static/media/lounge.c030d709721d1d5cb4f3.png",
+    "static/media/1f.png": "/adl-orf/static/media/1f.03590e7ec9ef0ce2da1e.png",
+    "static/media/Title.png": "/adl-orf/static/media/Title.224804de563018cd5f0f.png",
+    "static/media/logo.png": "/adl-orf/static/media/logo.feecbfcc326ffdf64e05.png",
+    "index.html": "/adl-orf/index.html",
+    "main.e6c13ad2.css.map": "/adl-orf/static/css/main.e6c13ad2.css.map",
+    "main.05e37397.js.map": "/adl-orf/static/js/main.05e37397.js.map",
+    "453.32908e4b.chunk.js.map": "/adl-orf/static/js/453.32908e4b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.05e37397.js"
+  ]
+}
