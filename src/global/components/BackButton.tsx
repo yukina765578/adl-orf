@@ -7,34 +7,36 @@ interface backButtonProps {
 }
 
 const BackButton: React.FC<backButtonProps> = ({headerHeight}) => {
-    const navigate = useNavigate();
-    const location  = useLocation();
-    const handleOnClick = () => {
-        navigate('/adl-orf')
-    }
-    if (location.pathname !== '/adl-orf') {
-        return (
-            <IconButton
-                onClick={handleOnClick}
-                variant="unstyled"
-                aria-label='Back'
-                icon={<NavigationLeft />}
-                style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    position: 'absolute',
-                    left: "0px",
-                    top: headerHeight,
-                    zIndex: 10
-                }}
-            >
-                Back to home
-            </IconButton>
-        );
-    } else {
-        return null; // Don't render the BackButton when in the home route ('/')
-    }
+  const navigate = useNavigate();
+  const location  = useLocation();
+  const handleOnClick = () => {
+      navigate('/adl-orf')
+  }
+
+  if (location.pathname === '/adl-orf' || location.pathname === '/'){
+    return null; // Don't render the BackButton when in the home route ('/')
+  }
+
+  return (
+    <>
+      <IconButton
+        onClick={handleOnClick}
+        variant="unstyled"
+        aria-label='Back'
+        icon={<NavigationLeft />}
+        style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'absolute',
+            left: "0px",
+            top: headerHeight,
+            zIndex: 10
+        }}
+      />
+    </>
+  );
 }
+
 
 export default BackButton
