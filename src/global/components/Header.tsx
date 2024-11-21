@@ -43,7 +43,7 @@ const Header: React.FC<HeaderProps> = ({ setHeaderHeight }) => {
       flexDirection: 'column',
       alignItems: 'center',
     }} ref={headerRef}>
-      <Image src={Title} marginBottom={3} maxH={10} onLoad={handleOnLoad} />
+      <Image src={Title} marginBottom={3} maxH={20} onLoad={handleOnLoad} />
       <Divider />
     </Box>
   );
