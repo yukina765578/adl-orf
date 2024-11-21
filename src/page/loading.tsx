@@ -1,6 +1,7 @@
 import { useState, useEffect} from 'react'
 import { Box, Image } from '@chakra-ui/react'
-import Logo from 'image/logo.png'
+import ADLLogo from 'image/ADLLogo.png'
+import ErikaLabLogo from 'image/ErikaLabLogo.png'
 import { fetchModalContents } from 'notion/api';
 
 interface LoadingProps {
@@ -39,7 +40,8 @@ const Loading: React.FC<LoadingProps> = ({ setData }) => {
     }, [setData])
     return(
         <Box sx={loadingBox}>
-            <Image boxSize="160px" src={Logo} />
+            <Image boxSize="160px" src={ADLLogo} style={{marginLeft: '12px'}} />
+            <Image boxSize="160px" src={ErikaLabLogo} objectFit="contain" />
         </Box>
     )
 }

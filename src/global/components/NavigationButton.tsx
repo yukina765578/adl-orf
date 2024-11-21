@@ -1,6 +1,5 @@
 import { Button, Image } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
-import Logo from 'image/logo.png'
 
 interface NavigationButtonProps {
     imagePosition: {top: number, left: number},
@@ -8,9 +7,10 @@ interface NavigationButtonProps {
     buttonPosition: {width: number, height: number};
     headerHeight: number;
     handleOnClick: () => void;
+    logo: string;
 }
 
-const NavigationButton: React.FC<NavigationButtonProps> = ({imagePosition, imageSize, buttonPosition, headerHeight, handleOnClick}) => {
+const NavigationButton: React.FC<NavigationButtonProps> = ({imagePosition, imageSize, buttonPosition, headerHeight, handleOnClick, logo}) => {
     const [coordinate, setCoordinate] = useState({
         top: 0,
         left: 0
@@ -33,7 +33,7 @@ const NavigationButton: React.FC<NavigationButtonProps> = ({imagePosition, image
         const imageScaledHeight = imageActualHeight * scaling
         const imageTopPosition = (imageSize.height - imageScaledHeight) / 2
         const topCoordinate = imagePosition.top - headerHeight + imageTopPosition + buttonTop;
-    
+
         const buttonLeft = buttonPosition.width * scaling;
         const imageScaledWidth = imageActualWidth * scaling
         const imageLeftPosition = (imageSize.width - imageScaledWidth) / 2
@@ -56,14 +56,14 @@ const NavigationButton: React.FC<NavigationButtonProps> = ({imagePosition, image
           variant="unstyled"
         >
           <Image
-            src={Logo}
+            src={logo}
             style={{
-              backgroundColor: 'black',
-              border: '1px solid gray',
+              backgroundColor: 'None',
+              filter: 'invert(1)',
             }}
             alt="Navigation Button"
             boxSize="48px"
-            objectFit="cover"
+            objectFit="contain"
           />
         </Button>
     )

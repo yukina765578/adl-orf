@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from'react';
-import {Box, Image, Fade } from '@chakra-ui/react'
+import {Box, Image, Fade, Heading } from '@chakra-ui/react'
 import Floor1 from 'image/1f.png'
 import Floor2 from 'image/2f.png'
 import NavigationButton from '../../global/components/NavigationButton';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ADLLogo from 'image/ADLLogo.png'
+import ErikaLabLogo from 'image/ErikaLabLogo.png'
+
 
 interface homeProp {
     headerHeight: number
@@ -91,23 +94,25 @@ const Home: React.FC<homeProp> = ({headerHeight}) => {
     return(
         <Fade in={true} transition={{enter: {duration: 0.3}, exit: {duration: 0.3}}}>
             <Box sx={contentBox}>
-                <Box sx={floorBox} ref={floor1Ref}>
+                <Box sx={{ ...floorBox, position: 'relative'}} ref={floor1Ref}>
+                    <Heading as="h2" size="lg" position="absolute" top={2} left={2}>1F</Heading>
                     <Image
                         src={Floor1}
                         style={imageStyle}
                         objectFit={'contain'}
                     />
-                    <NavigationButton imagePosition={image1Position} imageSize={image1Size} buttonPosition={{width: 210.928, height: 382.825 }} headerHeight={headerHeight} handleOnClick={handleOnClickLounge}/>
-                    <NavigationButton imagePosition={image1Position} imageSize={image1Size} buttonPosition={{width: 140.5, height: 117.982 }} headerHeight={headerHeight} handleOnClick={handleOnClickAtelier1} />
+                    <NavigationButton imagePosition={image1Position} imageSize={image1Size} buttonPosition={{width: 210.928, height: 382.825 }} headerHeight={headerHeight} handleOnClick={handleOnClickLounge} logo={ADLLogo}/>
+                    <NavigationButton imagePosition={image1Position} imageSize={image1Size} buttonPosition={{width: 140.5, height: 117.982 }} headerHeight={headerHeight} handleOnClick={handleOnClickAtelier1} logo={ErikaLabLogo} />
                 </Box>
-                <Box sx={floorBox} ref={floor2Ref}>
+                <Box sx={{ ...floorBox, position: 'relative'}} ref={floor2Ref}>
+                    <Heading as="h2" size="lg" position="absolute" top={2} left={2}>2F</Heading>
                     <Image
                         src={Floor2}
                         style={imageStyle}
                         objectFit={'contain'}
                     />
-                    <NavigationButton imagePosition={image2Position} imageSize={image2Size} buttonPosition={{width: 124.061, height: 346.4 }} headerHeight={headerHeight} handleOnClick={handleOnClickAtelier2} />
                 </Box>
+                <NavigationButton imagePosition={image2Position} imageSize={image2Size} buttonPosition={{width: 124.061, height: 346.4 }} headerHeight={headerHeight} handleOnClick={handleOnClickAtelier2} logo={ADLLogo} />
             </Box>    
         </Fade>
         
