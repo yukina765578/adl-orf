@@ -1,5 +1,5 @@
 import { Box, Divider, Image } from '@chakra-ui/react';
-import Title from '../../image/Title.png';
+import Title from 'image/Asset2.png';
 import { SetStateAction, useEffect, useRef } from 'react';
 
 interface HeaderProps {

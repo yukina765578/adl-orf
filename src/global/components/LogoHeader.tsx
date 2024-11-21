@@ -14,7 +14,7 @@ const LogoHeader: React.FC<logoHeaderProps> = ({headerHeight}) => {
 
   useEffect(() => {
     if (location.pathname === '/adl-orf/atelier1') {
-      setLogo(ADLLogo);
+      setLogo(ErikaLabLogo);
     } else {
       setLogo(ADLLogo);
     }
