@@ -1,5 +1,5 @@
 import { Box, Divider, Image } from '@chakra-ui/react';
-import Title from '../../image/Title.png';
+import Title from 'image/Asset2.png';
 import { SetStateAction, useEffect, useRef } from 'react';
 
 interface HeaderProps {
@@ -43,7 +43,7 @@ const Header: React.FC<HeaderProps> = ({ setHeaderHeight }) => {
       flexDirection: 'column',
       alignItems: 'center',
     }} ref={headerRef}>
-      <Image src={Title} marginBottom={3} maxH={10} onLoad={handleOnLoad} />
+      <Image src={Title} marginBottom={3} maxH={20} onLoad={handleOnLoad} />
       <Divider />
     </Box>
   );
