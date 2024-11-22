@@ -19,6 +19,7 @@ const Loading: React.FC<LoadingProps> = ({ setData }) => {
         justifyContent: 'center',
         alignItems: 'center',
         position: 'fixed',
+        flexDirection: 'column',
         zIndex: 999,
         opacity: loading ? 1 : 0,
         transition: 'opacity 1s ease-out',
