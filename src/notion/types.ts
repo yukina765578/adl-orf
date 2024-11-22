@@ -8,8 +8,7 @@ export interface NotionModalContent {
   contentUrl?: string;
 }
 
-export type Grade = 'B1' | 'B2' | 'B3' | 'B4' | 'M1' | 'M2';
-  
+export type Grade = 'B1' | 'B2' | 'B3' | 'B4' | 'M1' | 'M2' | '';  
 
 export interface PopupContent {
   id: number;
