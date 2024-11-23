@@ -51,7 +51,7 @@ const Atelier1: React.FC<Props> = ({
               viewportSize={viewportSize}
               buttonPosition={content.buttonPosition}
               isOpen={content.id === currentModal}
-              modalImage={content.modalImage || Morimoto}
+              modalImage={content.modalImage}
               modalTitle={content.modalTitle}
               name={`${content.name} ${content.grade}`}
               modalContent={content.modalContent}
