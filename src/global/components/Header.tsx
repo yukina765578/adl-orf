@@ -33,7 +33,7 @@ const Header: React.FC<HeaderProps> = ({ setHeaderHeight }) => {
 
   return (
     <Box sx={{
-      position: 'absolute',
+      position: 'fixed',
       padding: 2,
       top: 0,
       left: 0,
@@ -42,6 +42,7 @@ const Header: React.FC<HeaderProps> = ({ setHeaderHeight }) => {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
+      zIndex: 1000,
     }} ref={headerRef}>
       <Image src={Title} marginBottom={3} maxH={20} onLoad={handleOnLoad} />
       <Divider />

@@ -49,8 +49,8 @@ function App() {
         <Box>
           <ScrollToTop />
           <Loading setData={setData} />
-          <AppRoutes headerHeight={headerHeight} data={data} />
           <Header setHeaderHeight={setHeaderheight} />
+          <AppRoutes headerHeight={headerHeight} data={data} />
           <BackButton headerHeight={headerHeight} />
           <LogoHeader headerHeight={headerHeight} />
         </Box>
