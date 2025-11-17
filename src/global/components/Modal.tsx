@@ -1,10 +1,11 @@
 import React from 'react';
 import {
     Button,
-    Modal,
-    ModalContent,
-    ModalFooter,
-    ModalCloseButton,
+    Drawer,
+    DrawerOverlay,
+    DrawerContent,
+    DrawerCloseButton,
+    DrawerBody,
     IconButton,
     Box,
     Image,
@@ -127,13 +128,15 @@ const Popup: React.FC<PopupProps> = ({
     return(
         <>
             <Button onClick={handleOnOpen} sx={buttonStyle} variant='unstyled'>{modalButtonContent}</Button>
-            <Modal isCentered isOpen={isOpen} onClose={handleOnClose} size='sm'>
-                <ModalContent height="75vh" maxHeight={699} minHeight={600} padding='40px' >
-                    <Box overflowY='auto'>
+            <Drawer isOpen={isOpen} onClose={handleOnClose} placement="bottom" size="full">
+                <DrawerOverlay />
+                <DrawerContent height="100vh" padding='40px' position="relative">
+                    <DrawerCloseButton />
+                    <DrawerBody overflowY='auto' maxWidth="600px" margin="0 auto" width="100%">
                         <Box style={imageBox}>
-                            <Image 
-                                style={{width: '100%', height: '100%', borderRadius: '5px', objectFit: 'contain'}} 
-                                src={modalImage} 
+                            <Image
+                                style={{width: '100%', height: '100%', borderRadius: '5px', objectFit: 'contain'}}
+                                src={modalImage}
                             />
                         </Box>
                         <Divider marginTop={3} marginBottom={3}/>
@@ -148,7 +151,7 @@ const Popup: React.FC<PopupProps> = ({
                             {contentUrl && (
                                 <>
                                     <Text style={linkTitleStyle}>展示内容リンク:</Text>
-                                    <Link 
+                                    <Link
                                         href={contentUrl}
                                         isExternal
                                         color="blue.500"
@@ -161,44 +164,43 @@ const Popup: React.FC<PopupProps> = ({
                                 </>
                             )}
                         </Box>
-                    </Box>
-                    <ModalCloseButton />
-                    <ModalFooter width='100%'>
-                        <IconButton 
-                            onClick={handlePrevModal} 
-                            variant="unstyled" 
-                            aria-label='Previous' 
-                            icon={<NavigationLeft />} 
-                            style={{
-                                display:'flex', 
-                                alignItems: 'center', 
-                                justifyContent: 'center', 
-                                position: 'absolute', 
-                                left: "0px", 
-                                bottom: '48%'
-                            }}
-                        >
-                            Prev Modal
-                        </IconButton>
-                        <IconButton 
-                            onClick={handleNextModal} 
-                            variant="unstyled" 
-                            aria-label='Next' 
-                            icon={<NavigationRight />} 
-                            style={{
-                                display:'flex', 
-                                alignItems: 'center', 
-                                justifyContent: 'center', 
-                                position: 'absolute', 
-                                right: "0px", 
-                                bottom: '48%'
-                            }}
-                        >
-                            Next Modal
-                        </IconButton>
-                    </ModalFooter>
-                </ModalContent>
-            </Modal>
+                    </DrawerBody>
+                    <IconButton
+                        onClick={handlePrevModal}
+                        variant="unstyled"
+                        aria-label='Previous'
+                        icon={<NavigationLeft />}
+                        style={{
+                            display:'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            position: 'absolute',
+                            left: "5px",
+                            top: '50%',
+                            transform: 'translateY(-50%)'
+                        }}
+                    >
+                        Prev Modal
+                    </IconButton>
+                    <IconButton
+                        onClick={handleNextModal}
+                        variant="unstyled"
+                        aria-label='Next'
+                        icon={<NavigationRight />}
+                        style={{
+                            display:'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            position: 'absolute',
+                            right: "5px",
+                            top: '50%',
+                            transform: 'translateY(-50%)'
+                        }}
+                    >
+                        Next Modal
+                    </IconButton>
+                </DrawerContent>
+            </Drawer>
         </>
     )
 }

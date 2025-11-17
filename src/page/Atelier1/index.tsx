@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Box } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
-import Popup from '../../global/components/Modal';
+import PopupButton from '../../global/components/PopupButton';
+import PopupDrawer from '../../global/components/PopupDrawer';
 import Overlay from '../../global/components/Overlay';
 import Morimoto from '../../image/ModalImage/morimoto.png';
 import Atelier1Map from '../../global/components/maps/Atelier1Map';
@@ -45,25 +46,24 @@ const Atelier1: React.FC<Props> = ({
           <Overlay isOpen={currentModal > 0} />
           <Atelier1Map />
           {popupContents.map((content) => (
-            <Popup
+            <PopupButton
               key={content.id}
               id={content.id}
               viewportSize={viewportSize}
               buttonPosition={content.buttonPosition}
-              isOpen={content.id === currentModal}
-              modalImage={content.modalImage}
-              modalTitle={content.modalTitle}
-              name={`${content.name} ${content.grade}`}
-              modalContent={content.modalContent}
-              contentUrl={content.contentUrl} 
               modalButtonContent={content.id.toString()}
-              onNextModal={handleNextModal}
-              onPrevModal={handlePrevModal}
               setCurrentModal={setCurrentModal}
             />
           ))}
         </Box>
       </OpenFade>
+      <PopupDrawer
+        currentModal={currentModal}
+        setCurrentModal={setCurrentModal}
+        popupContents={popupContents}
+        onNextModal={handleNextModal}
+        onPrevModal={handlePrevModal}
+      />
     </>
   );
 };
