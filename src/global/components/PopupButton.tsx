@@ -36,7 +36,31 @@ const PopupButton: React.FC<PopupButtonProps> = ({
         left: leftCoordinate,
         position: 'absolute',
         transform: 'translate(-50%, -50%)',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
+        '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '40px',
+            height: '40px',
+            borderRadius: '50%',
+            border: '2px solid',
+            borderColor: 'gray.400',
+            animation: 'pulse-ring 2s ease-out infinite',
+            pointerEvents: 'none'
+        },
+        '@keyframes pulse-ring': {
+            '0%': {
+                transform: 'translate(-50%, -50%) scale(1)',
+                opacity: 0.8
+            },
+            '100%': {
+                transform: 'translate(-50%, -50%) scale(1.5)',
+                opacity: 0
+            }
+        }
     }
 
     return (

@@ -34,10 +34,13 @@ src/
 │       ├── NavigationButton.tsx
 │       ├── NavigationLeft.tsx
 │       ├── NavigationRight.tsx
-│       ├── Header.tsx        # Main header
+│       ├── Header.tsx        # Main header (sticky)
 │       ├── PageHeader.tsx    # Page-specific header
 │       ├── LogoHeader.tsx    # Logo component
-│       ├── Modal.tsx         # Modal component
+│       ├── Modal.tsx         # Legacy modal component
+│       ├── PopupDrawer.tsx   # Bottom drawer component (primary content display)
+│       ├── PopupButton.tsx   # Interactive button with pulse animation
+│       ├── ScrollDownButton.tsx # Scroll indicator for 2F section
 │       ├── HomeButton.tsx    # Home navigation button
 │       ├── BackButton.tsx    # Back navigation button
 │       ├── NaviLink.tsx      # Navigation link component
@@ -51,7 +54,7 @@ src/
 │
 ├── image/                    # Image assets
 │   ├── *.png                 # Various images
-│   └── ModalImage/           # Images for modals
+│   └── ModalImage/           # Images for modals/drawers
 │
 ├── notion/                   # Notion/data related
 │   ├── types.ts              # Type definitions (PopupContent, etc.)
@@ -78,8 +81,29 @@ src/
 - `/adl-orf/atelier2` - Atelier2 page
 
 ## Key Components
+
+### Content Display Architecture
+- **PopupDrawer.tsx**: Single instance bottom drawer that displays modal content
+  - Opens from bottom with full viewport height
+  - Contains integrated prev/next navigation
+  - Displays content based on currentModal state (1-19)
+  - Uses Chakra UI Drawer component
+  - Max width 600px centered layout for content
+
+- **PopupButton.tsx**: Interactive trigger buttons for drawers
+  - Position-responsive based on viewport size
+  - Animated pulsing ring effect
+  - Positioned absolutely on map images
+  - Button position clamping to stay within viewport
+
+- **ScrollDownButton.tsx**: Scroll indicator component
+  - Displays "2F" label with chevron icon
+  - Animated bounce effect using Framer Motion
+  - Used to indicate scrollable content below
+
+### Other Components
 - **App.tsx**: Main app with Router, theme provider, loading, header, and routes
 - **Routes.tsx**: Handles routing and modal state management
 - **Navigation components**: Fixed navigation UI elements
 - **Map components**: Interactive maps for each space
-- **Modal.tsx**: Reusable modal for displaying content
+- **Modal.tsx**: Legacy modal component (may still be in use alongside drawer)
