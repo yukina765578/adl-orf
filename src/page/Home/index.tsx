@@ -3,6 +3,7 @@ import {Box, Image, Fade, Heading } from '@chakra-ui/react'
 import Floor1 from 'image/1f.png'
 import Floor2 from 'image/2f.png'
 import NavigationButton from '../../global/components/NavigationButton';
+import ScrollDownButton from '../../global/components/ScrollDownButton';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ADLLogo from 'image/ADLLogo.png'
@@ -91,6 +92,12 @@ const Home: React.FC<homeProp> = ({headerHeight}) => {
         navigate('/adl-orf/atelier2');
     }
 
+    const handleScrollTo2F = () => {
+        if (floor2Ref.current) {
+            floor2Ref.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
     return(
         <Fade in={true} transition={{enter: {duration: 0.3}, exit: {duration: 0.3}}}>
             <Box sx={contentBox}>
@@ -103,6 +110,9 @@ const Home: React.FC<homeProp> = ({headerHeight}) => {
                     />
                     <NavigationButton imagePosition={image1Position} imageSize={image1Size} buttonPosition={{width: 210.928, height: 382.825 }} headerHeight={headerHeight} handleOnClick={handleOnClickLounge} logo={ADLLogo}/>
                     <NavigationButton imagePosition={image1Position} imageSize={image1Size} buttonPosition={{width: 140.5, height: 117.982 }} headerHeight={headerHeight} handleOnClick={handleOnClickAtelier1} logo={ErikaLabLogo} />
+                    <Box position="absolute" bottom="20px" left="50%" transform="translateX(-50%)" zIndex={5}>
+                        <ScrollDownButton onClick={handleScrollTo2F} />
+                    </Box>
                 </Box>
                 <Box sx={{ ...floorBox, position: 'relative'}} ref={floor2Ref}>
                     <Heading fontSize="xl" fontWeight="600" position="absolute" top="10px" left="15px">2F</Heading>
@@ -113,9 +123,9 @@ const Home: React.FC<homeProp> = ({headerHeight}) => {
                     />
                 </Box>
                 <NavigationButton imagePosition={image2Position} imageSize={image2Size} buttonPosition={{width: 124.061, height: 346.4 }} headerHeight={headerHeight} handleOnClick={handleOnClickAtelier2} logo={ADLLogo} />
-            </Box>    
+            </Box>
         </Fade>
-        
+
     )
 }
 
