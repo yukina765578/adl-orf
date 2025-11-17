@@ -95,7 +95,7 @@ const Home: React.FC<homeProp> = ({headerHeight}) => {
         <Fade in={true} transition={{enter: {duration: 0.3}, exit: {duration: 0.3}}}>
             <Box sx={contentBox}>
                 <Box sx={{ ...floorBox, position: 'relative'}} ref={floor1Ref}>
-                    <Heading as="h2" size="lg" position="absolute" top={2} left={2}>1F</Heading>
+                    <Heading fontSize="xl" fontWeight="600" position="absolute" top="10px" left="15px">1F</Heading>
                     <Image
                         src={Floor1}
                         style={imageStyle}
@@ -105,7 +105,7 @@ const Home: React.FC<homeProp> = ({headerHeight}) => {
                     <NavigationButton imagePosition={image1Position} imageSize={image1Size} buttonPosition={{width: 140.5, height: 117.982 }} headerHeight={headerHeight} handleOnClick={handleOnClickAtelier1} logo={ErikaLabLogo} />
                 </Box>
                 <Box sx={{ ...floorBox, position: 'relative'}} ref={floor2Ref}>
-                    <Heading as="h2" size="lg" position="absolute" top={2} left={2}>2F</Heading>
+                    <Heading fontSize="xl" fontWeight="600" position="absolute" top="10px" left="15px">2F</Heading>
                     <Image
                         src={Floor2}
                         style={imageStyle}

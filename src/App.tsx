@@ -10,8 +10,7 @@ import Loading from "./page/loading";
 import AppRoutes from "./global/Routes";
 import Navigation from "./global/components/Navigation";
 import Header from "./global/components/Header";
-import BackButton from "./global/components/BackButton";
-import LogoHeader from "./global/components/LogoHeader";
+import PageHeader from "./global/components/PageHeader";
 import { PopupContent } from "./notion/types";
 
 const customTheme = extendTheme({
@@ -50,9 +49,8 @@ function App() {
           <ScrollToTop />
           <Loading setData={setData} />
           <Header setHeaderHeight={setHeaderheight} />
+          <PageHeader headerHeight={headerHeight} />
           <AppRoutes headerHeight={headerHeight} data={data} />
-          <BackButton headerHeight={headerHeight} />
-          <LogoHeader headerHeight={headerHeight} />
         </Box>
       </ChakraProvider>
     </Router>
