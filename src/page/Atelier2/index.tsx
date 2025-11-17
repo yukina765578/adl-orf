@@ -4,9 +4,9 @@ import { useLocation } from 'react-router-dom';
 import PopupButton from '../../global/components/PopupButton';
 import PopupDrawer from '../../global/components/PopupDrawer';
 import Overlay from '../../global/components/Overlay';
-import Morimoto from '../../image/ModalImage/morimoto.png';
 import Atelier2Map from '../../global/components/maps/Atelier2Map';
 import OpenFade from '../../global/components/OpenFade';
+import PageTabs from '../../global/components/PageTabs';
 import { PopupContent } from '../../notion/types';
 
 interface Props {
@@ -64,6 +64,7 @@ const Atelier2: React.FC<Props> = ({
                 onNextModal={handleNextModal}
                 onPrevModal={handlePrevModal}
             />
+            <PageTabs />
         </>
     );
 };

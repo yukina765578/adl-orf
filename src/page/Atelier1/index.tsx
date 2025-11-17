@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Box } from '@chakra-ui/react';
-import { useLocation } from 'react-router-dom';
-import PopupButton from '../../global/components/PopupButton';
-import PopupDrawer from '../../global/components/PopupDrawer';
-import Overlay from '../../global/components/Overlay';
-import Morimoto from '../../image/ModalImage/morimoto.png';
-import Atelier1Map from '../../global/components/maps/Atelier1Map';
-import OpenFade from '../../global/components/OpenFade';
-import { PopupContent } from '../../notion/types';
+import React, { useEffect, useState } from "react";
+import { Box } from "@chakra-ui/react";
+import { useLocation } from "react-router-dom";
+import PopupButton from "../../global/components/PopupButton";
+import PopupDrawer from "../../global/components/PopupDrawer";
+import Overlay from "../../global/components/Overlay";
+import Atelier1Map from "../../global/components/maps/Atelier1Map";
+import OpenFade from "../../global/components/OpenFade";
+import PageTabs from "../../global/components/PageTabs";
+import { PopupContent } from "../../notion/types";
 
 interface Props {
   currentModal: number;
@@ -17,25 +17,27 @@ interface Props {
   data: PopupContent[];
 }
 
-const Atelier1: React.FC<Props> = ({ 
-  currentModal, 
-  setCurrentModal, 
-  handleNextModal, 
+const Atelier1: React.FC<Props> = ({
+  currentModal,
+  setCurrentModal,
+  handleNextModal,
   handlePrevModal,
-  data
+  data,
 }) => {
   const [popupContents, setPopupContents] = useState<PopupContent[]>([]);
-  
+
   const viewportSize = {
     width: window.innerWidth,
     height: window.innerHeight,
-  }
-  
+  };
+
   const location = useLocation();
   const { state } = location;
 
   useEffect(() => {
-    const atelier1Data = data.filter(content => 15 <= content.id && content.id <= 20);
+    const atelier1Data = data.filter(
+      (content) => 15 <= content.id && content.id <= 20,
+    );
     setPopupContents(atelier1Data);
   }, [data]);
 
@@ -64,6 +66,7 @@ const Atelier1: React.FC<Props> = ({
         onNextModal={handleNextModal}
         onPrevModal={handlePrevModal}
       />
+      <PageTabs />
     </>
   );
 };

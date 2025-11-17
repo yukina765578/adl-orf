@@ -25,7 +25,8 @@ const PopupButton: React.FC<PopupButtonProps> = ({
     const calculatedLeftCoordinate = (viewportSize.width / 2 + viewportSize.height * leftPercentage);
 
     // Clamp button position to stay inside viewport
-    const buttonHalfSize = 24;
+    // Increased to account for pulsing circle (40px + expansion)
+    const buttonHalfSize = 35;
     const minLeft = buttonHalfSize;
     const maxLeft = viewportSize.width - buttonHalfSize;
     const leftCoordinate = Math.max(minLeft, Math.min(maxLeft, calculatedLeftCoordinate));
