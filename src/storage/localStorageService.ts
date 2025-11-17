@@ -1,7 +1,9 @@
-import { PopupContent } from "./types";
+import { NotionModalContent } from '../notion/types';
 
-// Dummy data with all positions defined
-const DUMMY_MODAL_CONTENTS: PopupContent[] = [
+const STORAGE_KEY = 'adl_orf_modal_contents';
+
+// Dummy data for 20 modal contents
+const DUMMY_DATA: NotionModalContent[] = [
   // Lounge entries (1-10)
   {
     id: 1,
@@ -10,8 +12,7 @@ const DUMMY_MODAL_CONTENTS: PopupContent[] = [
     modalContent: 'This is a sample project description for Lounge area.\nMultiple lines are supported.',
     grade: 'B3',
     modalImage: 'https://via.placeholder.com/400x300?text=Lounge+1',
-    contentUrl: 'https://example.com/project1',
-    buttonPosition: { width: 9.18, height: 169 }
+    contentUrl: 'https://example.com/project1'
   },
   {
     id: 2,
@@ -20,7 +21,6 @@ const DUMMY_MODAL_CONTENTS: PopupContent[] = [
     modalContent: 'Another sample project in the Lounge area.',
     grade: 'B4',
     modalImage: 'https://via.placeholder.com/400x300?text=Lounge+2',
-    buttonPosition: { width: 9.18, height: 151 }
   },
   {
     id: 3,
@@ -29,7 +29,6 @@ const DUMMY_MODAL_CONTENTS: PopupContent[] = [
     modalContent: 'Creative work displayed in Lounge.',
     grade: 'M1',
     modalImage: 'https://via.placeholder.com/400x300?text=Lounge+3',
-    buttonPosition: { width: 9.18, height: 133 }
   },
   {
     id: 4,
@@ -38,7 +37,6 @@ const DUMMY_MODAL_CONTENTS: PopupContent[] = [
     modalContent: 'Innovative design project.',
     grade: 'B2',
     modalImage: 'https://via.placeholder.com/400x300?text=Lounge+4',
-    buttonPosition: { width: 9.18, height: 115 }
   },
   {
     id: 5,
@@ -47,7 +45,6 @@ const DUMMY_MODAL_CONTENTS: PopupContent[] = [
     modalContent: 'Research and development work.',
     grade: 'M2',
     modalImage: 'https://via.placeholder.com/400x300?text=Lounge+5',
-    buttonPosition: { width: 9.18, height: 97 }
   },
   {
     id: 6,
@@ -56,7 +53,6 @@ const DUMMY_MODAL_CONTENTS: PopupContent[] = [
     modalContent: 'Experimental artwork.',
     grade: 'B1',
     modalImage: 'https://via.placeholder.com/400x300?text=Lounge+6',
-    buttonPosition: { width: -9.18, height: 97 }
   },
   {
     id: 7,
@@ -65,7 +61,6 @@ const DUMMY_MODAL_CONTENTS: PopupContent[] = [
     modalContent: 'Collaborative project showcase.',
     grade: 'B3',
     modalImage: 'https://via.placeholder.com/400x300?text=Lounge+7',
-    buttonPosition: { width: -9.18, height: 115 }
   },
   {
     id: 8,
@@ -74,7 +69,6 @@ const DUMMY_MODAL_CONTENTS: PopupContent[] = [
     modalContent: 'Digital media creation.',
     grade: 'B4',
     modalImage: 'https://via.placeholder.com/400x300?text=Lounge+8',
-    buttonPosition: { width: -9.18, height: 133 }
   },
   {
     id: 9,
@@ -83,7 +77,6 @@ const DUMMY_MODAL_CONTENTS: PopupContent[] = [
     modalContent: 'Interactive installation.',
     grade: 'M1',
     modalImage: 'https://via.placeholder.com/400x300?text=Lounge+9',
-    buttonPosition: { width: -9.18, height: 151 }
   },
   {
     id: 10,
@@ -92,7 +85,6 @@ const DUMMY_MODAL_CONTENTS: PopupContent[] = [
     modalContent: 'Final year project.',
     grade: 'M2',
     modalImage: 'https://via.placeholder.com/400x300?text=Lounge+10',
-    buttonPosition: { width: -9.18, height: 169 }
   },
 
   // Atelier2 entries (11-14)
@@ -103,7 +95,6 @@ const DUMMY_MODAL_CONTENTS: PopupContent[] = [
     modalContent: 'Workshop project from Atelier 2.',
     grade: 'B2',
     modalImage: 'https://via.placeholder.com/400x300?text=Atelier2+1',
-    buttonPosition: { width: 0, height: 95.809 }
   },
   {
     id: 12,
@@ -112,7 +103,6 @@ const DUMMY_MODAL_CONTENTS: PopupContent[] = [
     modalContent: 'Hands-on creative work.',
     grade: 'B3',
     modalImage: 'https://via.placeholder.com/400x300?text=Atelier2+2',
-    buttonPosition: { width: 0, height: 120.074 }
   },
   {
     id: 13,
@@ -121,7 +111,6 @@ const DUMMY_MODAL_CONTENTS: PopupContent[] = [
     modalContent: 'Practical design exercise.',
     grade: 'B4',
     modalImage: 'https://via.placeholder.com/400x300?text=Atelier2+3',
-    buttonPosition: { width: 0, height: 144.569 }
   },
   {
     id: 14,
@@ -130,10 +119,9 @@ const DUMMY_MODAL_CONTENTS: PopupContent[] = [
     modalContent: 'Studio-based project.',
     grade: 'M1',
     modalImage: 'https://via.placeholder.com/400x300?text=Atelier2+4',
-    buttonPosition: { width: 0, height: 168.959 }
   },
 
-  // Atelier1 entries (15-19)
+  // Atelier1 entries (15-20)
   {
     id: 15,
     modalTitle: 'Atelier1 Project 1',
@@ -141,7 +129,6 @@ const DUMMY_MODAL_CONTENTS: PopupContent[] = [
     modalContent: 'Advanced studio work from Atelier 1.',
     grade: 'M2',
     modalImage: 'https://via.placeholder.com/400x300?text=Atelier1+1',
-    buttonPosition: { width: 27.5, height: 130 }
   },
   {
     id: 16,
@@ -150,7 +137,6 @@ const DUMMY_MODAL_CONTENTS: PopupContent[] = [
     modalContent: 'Conceptual art piece.',
     grade: 'B1',
     modalImage: 'https://via.placeholder.com/400x300?text=Atelier1+2',
-    buttonPosition: { width: 64, height: 99 }
   },
   {
     id: 17,
@@ -159,7 +145,6 @@ const DUMMY_MODAL_CONTENTS: PopupContent[] = [
     modalContent: 'Experimental design.',
     grade: 'B2',
     modalImage: 'https://via.placeholder.com/400x300?text=Atelier1+3',
-    buttonPosition: { width: 0.5, height: 79.5 }
   },
   {
     id: 18,
@@ -168,7 +153,6 @@ const DUMMY_MODAL_CONTENTS: PopupContent[] = [
     modalContent: 'Thesis project.',
     grade: 'M1',
     modalImage: 'https://via.placeholder.com/400x300?text=Atelier1+4',
-    buttonPosition: { width: -26.3, height: 143 }
   },
   {
     id: 19,
@@ -177,11 +161,80 @@ const DUMMY_MODAL_CONTENTS: PopupContent[] = [
     modalContent: 'Portfolio piece.',
     grade: 'M2',
     modalImage: 'https://via.placeholder.com/400x300?text=Atelier1+5',
-    buttonPosition: { width: -12.5, height: 212 }
-  }
+  },
+  {
+    id: 20,
+    modalTitle: 'Atelier1 Project 6',
+    name: 'Student T',
+    modalContent: 'Graduation project showcase.',
+    grade: 'B4',
+    modalImage: 'https://via.placeholder.com/400x300?text=Atelier1+6',
+  },
 ];
 
-export const fetchModalContents = async (): Promise<PopupContent[]> => {
-  // Simply return the dummy data
-  return Promise.resolve(DUMMY_MODAL_CONTENTS);
+/**
+ * Initialize local storage with dummy data if not already present
+ */
+export const initializeStorage = (): void => {
+  const existingData = localStorage.getItem(STORAGE_KEY);
+  if (!existingData) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(DUMMY_DATA));
+  }
+};
+
+/**
+ * Get all modal contents from local storage
+ */
+export const getModalContents = (): NotionModalContent[] => {
+  const data = localStorage.getItem(STORAGE_KEY);
+  if (!data) {
+    // Initialize with dummy data if not present
+    initializeStorage();
+    return DUMMY_DATA;
+  }
+  return JSON.parse(data);
+};
+
+/**
+ * Save modal contents to local storage
+ */
+export const saveModalContents = (contents: NotionModalContent[]): void => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(contents));
+};
+
+/**
+ * Reset to dummy data
+ */
+export const resetToDefaults = (): void => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(DUMMY_DATA));
+};
+
+/**
+ * Update a single modal content by ID
+ */
+export const updateModalContent = (id: number, updatedContent: Partial<NotionModalContent>): void => {
+  const contents = getModalContents();
+  const index = contents.findIndex(content => content.id === id);
+  if (index !== -1) {
+    contents[index] = { ...contents[index], ...updatedContent };
+    saveModalContents(contents);
+  }
+};
+
+/**
+ * Delete a modal content by ID
+ */
+export const deleteModalContent = (id: number): void => {
+  const contents = getModalContents();
+  const filtered = contents.filter(content => content.id !== id);
+  saveModalContents(filtered);
+};
+
+/**
+ * Add a new modal content
+ */
+export const addModalContent = (content: NotionModalContent): void => {
+  const contents = getModalContents();
+  contents.push(content);
+  saveModalContents(contents);
 };
