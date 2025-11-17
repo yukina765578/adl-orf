@@ -61,8 +61,15 @@ const Popup: React.FC<PopupProps> = ({
     }
     const topPercentage = (buttonPosition.height / 264.738) * 100;
     const leftPercentage = (buttonPosition.width / 264.738);
-    const leftCoordinate = (viewportSize.width / 2 + viewportSize.height * leftPercentage);
-    
+    const calculatedLeftCoordinate = (viewportSize.width / 2 + viewportSize.height * leftPercentage);
+
+    // Clamp button position to stay inside viewport
+    // Account for button size (48px) with transform: translate(-50%, -50%)
+    const buttonHalfSize = 24; // Half of 48px button size
+    const minLeft = buttonHalfSize;
+    const maxLeft = viewportSize.width - buttonHalfSize;
+    const leftCoordinate = Math.max(minLeft, Math.min(maxLeft, calculatedLeftCoordinate));
+
     const buttonStyle = {
         display: 'flex',
         top: `${topPercentage}%`,
