@@ -8,7 +8,6 @@ import {
 } from "@chakra-ui/react";
 import Loading from "./page/loading";
 import AppRoutes from "./global/Routes";
-import Navigation from "./global/components/Navigation";
 import Header from "./global/components/Header";
 import PageHeader from "./global/components/PageHeader";
 import { PopupContent } from "./notion/types";

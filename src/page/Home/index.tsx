@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from'react';
+import React, { useEffect, useState, useRef } from'react';
 import {Box, Image, Fade, Heading } from '@chakra-ui/react'
 import Floor1 from 'image/1f.png'
 import Floor2 from 'image/2f.png'
 import NavigationButton from '../../global/components/NavigationButton';
 import ScrollDownButton from '../../global/components/ScrollDownButton';
-import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ADLLogo from 'image/ADLLogo.png'
 import ErikaLabLogo from 'image/ErikaLabLogo.png'
@@ -15,11 +14,11 @@ interface homeProp {
 }
 const Home: React.FC<homeProp> = ({headerHeight}) => {
     const navigate = useNavigate();
-    
-    const [viewportSize, setViewportSize] = useState({
+
+    const viewportSize = {
         width: window.innerWidth,
         height: window.innerHeight,
-    })
+    }
     const [image1Size, setImage1Size] = useState({
         width: 0,
         height: 0

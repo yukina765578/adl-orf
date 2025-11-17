@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Home from '../page/Home';
@@ -13,7 +12,6 @@ interface appRoutesProps {
 }
 
 const AppRoutes: React.FC<appRoutesProps> = ({headerHeight, data}) => {
-    console.log(headerHeight)
     const [currentModal, setCurrentModal] = useState<number>(0);
     const navigate = useNavigate()
     const handleNextModal = () => {

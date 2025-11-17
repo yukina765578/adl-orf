@@ -26,7 +26,6 @@ const Loading: React.FC<LoadingProps> = ({ setData }) => {
         pointerEvents: loading ? 'auto' : 'none'
     }
     useEffect(() => {
-      console.log('loading')
       const loadNotionData = async () => {
         try{
           const data = await fetchModalContents();
