@@ -41,7 +41,7 @@ const Atelier1: React.FC<Props> = ({
   return (
     <>
       <OpenFade shouldFade={state}>
-        <Box sx={{ width: viewportSize.width, height: viewportSize.height, overflow: 'hidden' }}>
+        <Box sx={{ width: viewportSize.width, height: viewportSize.height }}>
           <Overlay isOpen={currentModal > 0} />
           <Atelier1Map />
           {popupContents.map((content) => (
