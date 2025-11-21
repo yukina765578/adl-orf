@@ -15,18 +15,18 @@ const AppRoutes: React.FC<appRoutesProps> = ({headerHeight, data}) => {
     const [currentModal, setCurrentModal] = useState<number>(0);
     const navigate = useNavigate()
     const handleNextModal = () => {
-        currentModal === 19 ? setCurrentModal(1) : setCurrentModal(currentModal + 1)
+        currentModal === 16 ? setCurrentModal(1) : setCurrentModal(currentModal + 1)
     }
     const handlePrevModal = () => {
-        currentModal === 1 ? setCurrentModal(19) : setCurrentModal(currentModal - 1)
+        currentModal === 1 ? setCurrentModal(16) : setCurrentModal(currentModal - 1)
     }
 
     useEffect(() => {
-        if (currentModal <= 10 && currentModal > 0) {
+        if ((currentModal >= 1 && currentModal <= 4) || (currentModal >= 13 && currentModal <= 16)) {
             navigate('/adl-orf/lounge', { state:{shouldFade: true}});
-        } else if (currentModal > 10 && currentModal <= 14) {
+        } else if (currentModal >= 5 && currentModal <= 8) {
             navigate('/adl-orf/atelier2', { state:{shouldFade: true}});
-        } else if(currentModal > 14) {
+        } else if (currentModal >= 9 && currentModal <= 12) {
             navigate('/adl-orf/atelier1', { state:{shouldFade: true}})
         }
     }, [currentModal, navigate]);

@@ -20,15 +20,20 @@ const Loading: React.FC<LoadingProps> = ({ setData }) => {
         alignItems: 'center',
         position: 'fixed',
         flexDirection: 'column',
-        zIndex: 999,
+        zIndex: 9999,
         opacity: loading ? 1 : 0,
         transition: 'opacity 1s ease-out',
         pointerEvents: loading ? 'auto' : 'none'
     }
     useEffect(() => {
       const loadNotionData = async () => {
-        try{
-          const data = await fetchModalContents();
+        const minDisplayTime = new Promise(resolve => setTimeout(resolve, 500));
+
+        try {
+          const [data] = await Promise.all([
+            fetchModalContents(),
+            minDisplayTime
+          ]);
           setData(data);
         } catch (err) {
           console.error(err);

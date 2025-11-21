@@ -84,13 +84,17 @@ const PopupDrawer: React.FC<PopupDrawerProps> = ({
             <DrawerContent height="100vh" padding='40px' position="relative">
                 <DrawerCloseButton />
                 <DrawerBody overflowY='auto' maxWidth="600px" margin="0 auto" width="100%">
-                    <Box style={imageBox}>
-                        <Image
-                            style={{width: '100%', height: '100%', borderRadius: '5px', objectFit: 'contain'}}
-                            src={currentContent.modalImage}
-                        />
-                    </Box>
-                    <Divider marginTop={3} marginBottom={3}/>
+                    {currentContent.modalImage && (
+                        <>
+                            <Box style={imageBox}>
+                                <Image
+                                    style={{width: '100%', height: '100%', borderRadius: '5px', objectFit: 'contain'}}
+                                    src={currentContent.modalImage}
+                                />
+                            </Box>
+                            <Divider marginTop={3} marginBottom={3}/>
+                        </>
+                    )}
                     <Box>
                         <Heading style={titleStyle} fontWeight={600}>{currentContent.modalTitle}</Heading>
                         <Text style={nameStyle} fontWeight={600}>{`${currentContent.name} ${currentContent.grade}`}</Text>
@@ -99,19 +103,22 @@ const PopupDrawer: React.FC<PopupDrawerProps> = ({
                         >
                             {currentContent.modalContent}
                         </Text>
-                        {currentContent.contentUrl && (
+                        {currentContent.contentUrl && currentContent.contentUrl.length > 0 && (
                             <>
-                                <Text style={linkTitleStyle}>U:…¹êó¯:</Text>
-                                <Link
-                                    href={currentContent.contentUrl}
-                                    isExternal
-                                    color="blue.500"
-                                    fontSize="12px"
-                                    textDecoration="underline"
-                                    sx={{ wordBreak: 'break-all' }}
-                                >
-                                    {currentContent.contentUrl}
-                                </Link>
+                                <Text style={linkTitleStyle}>ãƒªãƒ³ã‚¯:</Text>
+                                {currentContent.contentUrl.map((url, index) => (
+                                    <Link
+                                        key={index}
+                                        href={url}
+                                        isExternal
+                                        color="blue.500"
+                                        fontSize="12px"
+                                        textDecoration="underline"
+                                        sx={{ wordBreak: 'break-all', display: 'block' }}
+                                    >
+                                        {url}
+                                    </Link>
+                                ))}
                             </>
                         )}
                     </Box>

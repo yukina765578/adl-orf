@@ -35,7 +35,7 @@ const Atelier2: React.FC<Props> = ({
     const { state } = location;
 
     useEffect(() => {
-        const atelier2Data = data.filter(content => 11 <= content.id && content.id <= 14);
+        const atelier2Data = data.filter(content => content.id >= 5 && content.id <= 8);
         setPopupContents(atelier2Data);
     }, [data]);
 

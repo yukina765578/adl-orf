@@ -36,7 +36,7 @@ const Lounge: React.FC<Props> = ({
 
   useEffect(() => {
     const loungeData = data.filter(
-      (content) => 1 <= content.id && content.id <= 10,
+      (content) => (content.id >= 1 && content.id <= 4) || (content.id >= 13 && content.id <= 16),
     );
     setPopupContents(loungeData);
   }, [data]);
