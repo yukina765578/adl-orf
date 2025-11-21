@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/adl-orf/static/css/main.e6c13ad2.css",
-    "main.js": "/adl-orf/static/js/main.75b52d26.js",
+    "main.js": "/adl-orf/static/js/main.29be6d9b.js",
     "static/js/453.32908e4b.chunk.js": "/adl-orf/static/js/453.32908e4b.chunk.js",
     "static/media/15.bmp": "/adl-orf/static/media/15.15337fcbd943dcb478e9.bmp",
     "static/media/7.jpg": "/adl-orf/static/media/7.1f755057b091fdc70459.jpg",
@@ -25,11 +25,11 @@
     "static/media/ADLLogo.png": "/adl-orf/static/media/ADLLogo.feecbfcc326ffdf64e05.png",
     "index.html": "/adl-orf/index.html",
     "main.e6c13ad2.css.map": "/adl-orf/static/css/main.e6c13ad2.css.map",
-    "main.75b52d26.js.map": "/adl-orf/static/js/main.75b52d26.js.map",
+    "main.29be6d9b.js.map": "/adl-orf/static/js/main.29be6d9b.js.map",
     "453.32908e4b.chunk.js.map": "/adl-orf/static/js/453.32908e4b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.75b52d26.js"
+    "static/js/main.29be6d9b.js"
   ]
 }

@@ -53,9 +53,9 @@ const DUMMY_MODAL_CONTENTS: PopupContent[] = [
   },
   {
     id: 4,
-    modalTitle: "Lounge Project 5",
-    name: "Student E",
-    modalContent: "Research and development work.",
+    modalTitle: "",
+    name: "童陳通",
+    modalContent: "",
     grade: "M2",
     modalImage: "",
     buttonPosition: { width: 9.18, height: 97 },
